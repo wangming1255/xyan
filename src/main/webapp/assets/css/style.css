@@ -1,0 +1,203 @@
+/* general body settings */
+body { 
+  color: #000; 
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size:13px; 
+  direction: ltr;
+}
+img {vertical-align: bottom;}
+.body{
+	background-color: #fff;
+	width: 999px;
+	position:relative;
+	margin: 80px auto 20px;	
+}
+/*
+Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
+properly apply the media queries in Bootstrap's CSS. To address this, 
+you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
+*/
+@-webkit-viewport { width: device-width;}
+@-moz-viewport {width: device-width;}
+@-ms-viewport {width: device-width;}
+@-o-viewport {width: device-width;}
+@viewport {width: device-width;}
+/* Internet Explorer 10 doesn't differentiate device width from viewport width, 
+and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied */
+@-ms-viewport { width: auto !important;}
+/**General typography*/
+h1 small,h2 small,h3 small,h4 small,h5 small,h6 small {color: #444;}
+h1,h2,h3,h4,h5,h6 {font-family: 'Open Sans', sans-serif;font-weight: 300 !important;}
+h1.block,h2.block,h3.block,h4.block,h5.block,h6.block {padding-top: 10px;padding-bottom: 10px;}
+a {text-shadow: none !important;color: #0d638f;}
+/**Fix link outlines after click*/
+a,a:focus, a:hover, a:active {outline: 0;}
+/**General backgrounds. Can be applied to any block or panel*/
+.bg-blue {
+  background-image: none !important;
+  background-color: #4b8df8 !important;
+  border-color:#4b8df8 !important;
+  color: #fff !important;
+}
+.bg-red {
+  background-image: none !important;
+  background-color: #e02222 !important;
+  border-color: #e02222 !important;
+  color: #fff !important;
+}
+.bg-yellow {
+  background-image: none !important;
+  background-color: #ffb848 !important;
+  border-color: #ffb848 !important;
+  color: #fff !important;
+}
+.bg-green {
+  background-image: none !important;
+  background-color: #35aa47 !important;
+  border-color: #35aa47 !important;
+  color: #fff !important;
+}
+.bg-purple {
+  background-image: none !important;
+  background-color: #852b99 !important;
+  border-color: #852b99 !important;
+  color: #fff !important;
+}
+.bg-dark {
+  background-image: none !important;
+  background-color: #555555 !important;
+  border-color: #555555 !important;
+  color: #fff !important;
+}
+.bg-grey {
+  background-image: none !important;
+  background-color: #fafafa !important;
+  border-color: #fafafa !important;
+}
+/**Close icon used for modal dialog and other UI element close buttons*/
+.close {
+  display: inline-block;
+  margin-top: 0px;
+  margin-right: 0px;
+  width: 9px;
+  height: 9px;
+  background-repeat: no-repeat !important;
+  text-indent: -10000px;
+  outline: none;
+  background-image: url("../img/remove-icon-small.png") !important;
+}
+/**General HR*/
+hr{ margin: 20px 0; border: 0; border-top: 1px solid #E0DFDF;border-bottom: 1px solid #FEFEFE;}
+/**Tools*/
+.display-none,.display-hide {display: none;}
+.no-space {margin: 0px !important; padding: 0px !important;}
+.margin-bottom-10 {margin-bottom: 10px !important;}
+.margin-top-10 {margin-top: 10px !important;}
+.margin-bottom-15 {margin-bottom: 15px !important;}
+.margin-bottom-20 {margin-bottom: 20px !important;}
+.margin-top-20 {margin-top: 20px !important;}
+.margin-bottom-25 { margin-bottom: 25px !important;}
+.margin-right-10 { margin-right: 10px !important;}
+.bold {font-weight:600 !important;}
+.fix-margin { margin-left: 0px !important}
+.border-red{border: 1px solid red;}
+.inline {display: inline;}
+/**Header and header elements.*/
+.header {width: 100%;padding: 0 20px 0 20px; margin: 0;border: 0px;padding: 0px;box-shadow: none; height: 42px; min-height: 42px;}
+/**Page container*/
+.page-container {margin: 0px; padding: 0px; position: relative;}
+.page-container:before,
+.page-container:after {display: table; content: " ";}
+.page-container:after {clear: both;}
+/**Footer*/
+.footer { padding: 8px 20px 5px 20px;font-size: 12px;}
+.footer:after,.footer:before { content: ""; display: table;line-height: 0;}
+.footer:after {clear: both;}
+/**GENERAL UI ELEMENTS*/
+i.big {font-size: 20px;}
+i.warning {color: #d12610;}
+i.critical {color: #37b7f3;}
+i.normal {color: #52e136;}
+/**Input icons*/
+.input-icon {position: relative;}
+/**Custom icon buttons*/
+.icon-btn {
+  height: 60px;
+  min-width: 80px;
+  margin: 5px 5px 0 0;
+  border: 1px solid #ddd;
+  padding: 12px 0px 0px 0px;
+  background-color: #fafafa !important;
+  background-image: none !important;
+  filter:none !important;
+  -webkit-box-shadow: none !important;
+     -moz-box-shadow: none !important;
+          box-shadow: none !important;
+  display:inline-block !important;
+  color: #646464 !important;
+  text-shadow: none !important;
+  text-align: center;
+  cursor: pointer;
+  position: relative;  
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+.icon-btn i {font-size: 18px;}
+.ie8 .icon-btn:hover {filter: none !important;} 
+.icon-btn:hover {
+  text-decoration: none !important;
+  border-color: #999 !important;
+  color: #444 !important;
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 1) !important;
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.icon-btn:hover .badge {
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  -webkit-box-shadow: none !important;
+       -moz-box-shadow: none !important;
+            box-shadow: none !important;
+}
+/**Zoom icon overlay on images*/
+.zoom {cursor: pointer; width: 100%; height: 100%; position: relative;z-index: 5;}
+.zone{
+  color: #666;
+  background-color: #088ef0;
+  border-color: #EEE;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  width:100%;
+  margin: 0;
+  display: inline-block;
+  appearance: none;
+  border: none;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition-property: all;
+          transition-property: all;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+}
+.code-img{width: 100px;height: 40px;}
+.text:focus{ border: 1px solid #59a5d9;box-shadow: 0 0 3px #59a5d9;}

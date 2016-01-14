@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+/**主体 start*/
+.body{margin-top:35px;}
+.main{width: 963px;margin-top:52px;margin-left:48px;background-color: #fff}
+.main-glass {
+    height: 104px;
+    margin-top: 30px;
+}
+.advertisement {
+    font-size: 18px;
+    height: 100%;
+    padding-top: 51px;
+    text-align: center;
+    vertical-align: 22px;
+    width: 100%;
+    background-image: url("../../app/img/04.jpg");
+}
+.right-img-container > div {
+    background-image: url("../../app/img/page-back-1.jpg");
+    font-size: 18px;
+    height: 180px;
+    margin-top: 20px;
+    padding-top: 100px;
+    text-align: center;
+    width: 285px;
+}
+.main-back h2,.main-front h2{
+	min-height: 1.5em;
+    display: inline-block;
+    padding: 12px 36px;
+    margin: 40px 5px 5px 0px;
+    cursor: pointer;
+    opacity: 0.9;
+    color: #FFF;
+    font-size: 1em;
+    letter-spacing: 1px;
+    /* X轴偏移1像素、Y轴偏移2像素、不透明度为0.9的黑色文本阴影 */
+    text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
+      
+    background: #434343;
+    border: 1px solid #242424;
+     
+    border-radius: 4px;
+    /*
+    使用多层阴影实现按钮立体效果
+    第一层：Y轴偏移1像素、不透明度为0.25的白色外阴影效果
+    第二层：Y轴偏移1像素、不透明度为0.25的白色内阴影效果
+    第三层：偏移位0、不透明度为0.25的黑色外阴影效果
+    第四层：Y轴偏移20像素、不透明度为0.03的白色内阴影效果
+    第五层：X轴偏移-20像素、Y轴偏移20像素、不透明度为0.15的黑色内阴影效果
+    第六层：X轴偏移20像素、Y轴偏移20像素、不透明度为0.05的白色内阴影效果
+    */
+    box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    /* 让变化的属性在100毫秒内匀速过渡 */
+    transition: all 0.1s linear;
+}
+.main-back h2:hover,.main-front h2:hover{
+	/*
+    鼠标悬停时的按钮多层阴影效果，和按钮默认时相比只是第一层有变化：
+    第一层：X轴偏移2像素、Y轴偏移5像素、不透明度为0.5的黑色外阴影效果
+    */
+    box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+.main-back h2 span,.main-front h2 span{
+	display: block;
+    position: relative;
+    /* IE下面使用滤镜实现渐变效果 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+    /* 使用水平的线性渐变实现按钮顶部的关泽效果 */
+    background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+    padding: 0px 12px;
+    top: -12px;
+    left: -24px;
+    text-align:center;
+    height: 1px;
+    box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+    /* 让变化的属性在300毫秒内以ease-in-out（先加速后减速）方式过渡 */
+    transition: all 0.3s ease-in-out;
+}
+.main-front-item{
+	margin-top: 25px;
+	border:1px solid #fff;
+	-moz-box-shadow:1px 2px 5px 10px rgba(5, 5, 5, 0.16);
+	-webkit-box-shadow:1px 2px 5px 10px rgba(5, 5, 5, 0.16);
+	box-shadow: 1px 2px 5px 10px rgba(5, 5, 5, 0.16);
+}
+.main-front-item:hover{
+    box-shadow: 0 0 3px #48a3ef;
+}
+.item-title-item{margin-left: 25px;color:#777;font-size: 0.95em;}
+.item-content{text-indent: 2em;line-height: 2.1em;}
+.item-t-title{font-size: 1.5em;color:#34538b;cursor: pointer;}
+.item-t-title a{text-decoration: none;}
+.item-t-title:hover{color:#06c;}
+.item-foot{font-size: 1.05em;color:#06c;}
+.right{	width: 290px;margin-top: 145px;}
+.right-img-item{width:240px;}
+.mid-blank{width: 23px;margin-top: 40px;}
+/**站内图片（下面）*/
+.picture{width: 1200px;background-color: #fff;}
+.flexslider .slides  dd{font-size:20px;width:250px;line-height:60px;margin-left: 1px;text-align:center;}
+.flexslider .slides  p{font-size:16px; text-align:center;width:100%; line-height:1.2em;margin-top:10px;}
+.ml200{	margin-left: 100px;}

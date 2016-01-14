@@ -1,0 +1,32 @@
+/*
+ *简单的样式表，收录常用的简单样式
+ */
+@CHARSET "UTF-8";
+html,body,div,span,ul,li,p{margin:0;padding:0;}
+body{
+	background-color: #f8f8f8;
+	background-image: url("/xyan/app/img/bodyBg4.jpg");
+}
+li{list-style-type: none;}
+.float,.grid{float:left;}
+.red{color:red;}
+.white{color:white;}
+.black{color:black;}
+.h20{height: 20px;}
+.w40{width:40px;}
+.w60{width:60px;}
+.w80{width:80px;}
+.w100{width:100px;}
+.w120{width:120px;}
+.w160{width:160px;}
+.w200{width:200px;}
+.w240{width:240px;}
+.e5{color:#e5e5e5;}
+.clearf{clear:both;	height: 0;	width: 0;}
+body>div{width: 100%;}
+.m-auto{margin: 0 auto;}
+.flexslider .slides img{
+	height:160px; 
+}
+.error-red{color:red;}
+.p-center{text-align: center;vertical-align: middle;}

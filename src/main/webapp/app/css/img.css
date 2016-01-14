@@ -1,0 +1,46 @@
+html,body,div,p,span{
+	margin: 0;
+	padding: 0;
+}
+
+div::after, ul::after, dl::after, .clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.wrap{
+	width: 1024px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.clearf{
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+}
+
+.img-c-container{
+	padding: 50px;
+}
+.img-container{
+	text-align:justify;
+	width: 100%;
+	margin-left: 5px;
+}
+.head-top .item{
+	float:left;
+	margin-right: 35px;
+}
+.column{
+	display: inline;
+    float: left;
+    margin-left: 20px;
+    width: 240px;
+    border: 1px solid red;
+}
+.introduce{
+	font-size: 16px;
+}

@@ -73,10 +73,10 @@ var path='<%=application.getAttribute("path")%>';
 			</span>
 		</a>
 		| 
-		<a href="${path}/life/list" target="_blank" class="head-top-item">
+		<a href="${path}/work/list" target="_blank" class="head-top-item">
 			<span class="head-top-item-back soft"></span>
 			<span class="head-top-item-text">
-				我的生活
+				我的作品
 			</span>
 		</a>
 		| 

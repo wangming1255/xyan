@@ -248,7 +248,13 @@
 			<version>${mysql.connector.version}</version>
 		</dependency>
 		<!-- oracle -connector -->
-
+		
+		<!--模板  velocity-->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
 		<!-- DruidDataSource -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

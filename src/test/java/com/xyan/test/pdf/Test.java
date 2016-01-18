@@ -34,5 +34,7 @@ public class Test {
 		doc.add(new Paragraph("Hello World2"));
 		writer.setPdfVersion(PdfWriter.PDF_VERSION_1_2);
 		doc.close();
+		
+		
 	}
 }

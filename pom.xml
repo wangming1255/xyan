@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.eliteams</groupId>
-	<artifactId>xyan</artifactId>
+	<groupId>com.xyan</groupId>
+	<artifactId>site</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<!--一些无关太重要的东西，用户描述你的项目的名字,可选的 -->
@@ -37,22 +37,10 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${plugin.maven-surefire}</version>
-				<configuration>
-					<skipTests>${skipTests}</skipTests>
-				</configuration>
-			</plugin>
 		</plugins>
 
 		<!--配置Maven 对resource文件 过滤 -->
 		<resources>
-			<!-- <resource> <directory>src/main/resources</directory> <includes> <include>**/*.properties</include> 
-				<include>**/*.xml</include> </includes> <filtering>true</filtering> </resource> 
-				<resource> <directory>src/main/java</directory> <includes> <include>**/*.properties</include> 
-				<include>**/*.xml</include> </includes> <filtering>true</filtering> </resource> -->
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
@@ -66,9 +54,6 @@
 				<includes>
 					<include>**/*.*</include>
 				</includes>
-				<!-- <excludes> <exclude>spring/es_client.xml</exclude> <exclude>spring/applicationContext-common.xml</exclude> 
-					<exclude>jdbc.properties</exclude> <exclude>ftp-client.properties</exclude> 
-					</excludes> -->
 			</resource>
 		</resources>
 	</build>
@@ -77,7 +62,7 @@
 		<!-- base setting -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.locales>zh_CN</project.build.locales>
-		<project.build.jdk>1.8</project.build.jdk>
+		<project.build.jdk>1.7</project.build.jdk>
 
 		<!-- plugin setting -->
 		<mybatis.generator.generatorConfig.xml>${basedir}/src/test/resources/generatorConfig.xml</mybatis.generator.generatorConfig.xml>
@@ -126,12 +111,15 @@
 			<version>5.5.8</version>
 		</dependency>
 		<!-- pdf -->
-
+		
+		<!-- quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>${quartz.version}</version>
 		</dependency>
+		
+		<!-- json start  -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
@@ -152,6 +140,8 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<!-- json end  -->
+		
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -281,6 +271,8 @@
 		</dependency>
 		<!-- log end -->
 
+
+
 		<!-- servlet api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -295,6 +287,7 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
+
 		<!-- thymeleaf模板 -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
@@ -306,6 +299,16 @@
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>${thymeleaf.version}</version>
 		</dependency>
+		
+		
+		<!-- sitemesh start -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<!-- sitemesh end -->
+		
 		<!-- start apache -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -319,12 +322,24 @@
 			<version>2.4</version>
 		</dependency>
 
+		<!-- 使用的jar包为httpclient4，需要的jar包由httpclient3分成了多个  start -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${httpclient.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<!-- 使用的jar包为httpclient4，需要的jar包由httpclient3分成了多个  end -->
+		
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -433,19 +448,73 @@
 
 		<!-- uediror -->
 		<dependency>
-			<groupId>ueditor</groupId>
-			<artifactId>ueditor</artifactId>
-			<version>1.1.2</version>
+			<groupId>json_simple</groupId>
+			<artifactId>json_simple</artifactId>
+			<version>1.1</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.2.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json_simple-1.1.jar</systemPath>
 		</dependency>
 
 		<dependency>
-			<groupId>json</groupId>
-			<artifactId>json</artifactId>
-			<version>1.1.2</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json.jar</systemPath>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+		
+		<!-- Spring 整合Shiro需要的依赖 start  -->
+		  <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-core</artifactId>
+		    <version>1.2.4</version>
+		  </dependency>
+		  <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-web</artifactId>
+		    <version>1.2.4</version>
+		  </dependency>
+		  <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-ehcache</artifactId>
+		    <version>1.2.4</version>
+		  </dependency>
+		  <dependency>
+		    <groupId>org.apache.shiro</groupId>
+		    <artifactId>shiro-spring</artifactId>
+		    <version>1.2.4</version>
+		  </dependency> 
+		  <!-- <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>1.2.1</version>
+        </dependency> -->
+		<!-- Spring 整合Shiro需要的依赖 end  -->
+		
+		<!-- netty -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty</artifactId>
+			<version>3.10.5.Final</version>
+		</dependency>
+				
+		<!-- POI -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
+				
+		<!-- JXL 操作excel -->
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
+		</dependency>
+		
+		<!-- java 爬虫 -->
+		<dependency>
+			<groupId>cn.edu.hfut.dmic.webcollector</groupId>
+			<artifactId>WebCollector</artifactId>
+			<version>2.09</version>
 		</dependency>
 	</dependencies>
 </project>

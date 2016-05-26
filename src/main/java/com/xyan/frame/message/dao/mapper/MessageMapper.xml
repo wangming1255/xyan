@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xyan.frame.message.dao.MessageDao">
+
+
+	<sql id="mapSQL">
+		ID as "id"
+		, FROM as "from"
+		, TO as "to"
+		, TITLE as "title"
+		, CONTENT as "content"
+	</sql>
+
+	<sql id="objectSQL">
+		ID as "id"
+		, FROM as "from"
+		, TO as "to"
+		, TITLE as "title"
+		, CONTENT as "content"
+	</sql>
+
+	<select id="selectByPrimaryKey" resultType="com.xyan.frame.message.model.MessageModel"
+		parameterType="java.lang.Long">
+		SELECT
+		<include refid="mapSQL" />
+		FROM xy_message
+		WHERE
+		ID=#{id}
+	</select>
+
+	<select id="countByExample" parameterType="com.xyan.frame.message.model.MessageModel">
+		select count(1) FROM xy_message
+		<where>
+			<if test="id!=null">AND ID = #{id}</if>
+			<if test="from!=null">AND FROM = #{from}</if>
+			<if test="to!=null">AND TO = #{to}</if>
+			<if test="title!=null">AND TITLE = #{title}</if>
+			<if test="content!=null">AND CONTENT = #{content}</if>
+		</where>
+	</select>
+
+	<select id="selectModelByExample" resultType="com.xyan.frame.message.model.MessageModel"
+		parameterType="com.xyan.frame.message.model.MessageModel">
+		SELECT
+		<include refid="objectSQL" />
+		FROM xy_message
+		<where>
+			<if test="id!=null">AND ID = #{id}</if>
+			<if test="from!=null">AND FROM = #{from}</if>
+			<if test="to!=null">AND TO = #{to}</if>
+			<if test="title!=null">AND TITLE = #{title}</if>
+			<if test="content!=null">AND CONTENT = #{content}</if>
+		</where>
+	</select>
+
+	<select id="selectByExample" resultType="java.util.HashMap"
+		parameterType="com.xyan.frame.message.model.MessageModel">
+		SELECT
+		<include refid="mapSQL" />
+		FROM xy_message
+		<where>
+			<if test="id!=null">AND ID = #{id}</if>
+			<if test="from!=null">AND FROM = #{from}</if>
+			<if test="to!=null">AND TO = #{to}</if>
+			<if test="title!=null">AND TITLE = #{title}</if>
+			<if test="content!=null">AND CONTENT = #{content}</if>
+		</where>
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		DELETE FROM xy_message
+		WHERE ID=#{id}
+	</delete>
+
+
+	<insert id="insert" parameterType="com.xyan.frame.message.model.MessageModel">
+		INSERT INTO xy_message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+
+			<if test="id != null">ID,</if>
+			<if test="from != null">FROM,</if>
+			<if test="to != null">TO,</if>
+			<if test="title != null">TITLE,</if>
+			<if test="content != null">CONTENT,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="from != null">#{from},</if>
+			<if test="to != null">#{to},</if>
+			<if test="title != null">#{title},</if>
+			<if test="content != null">#{content},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.xyan.frame.message.model.MessageModel">
+		UPDATE xy_message
+		<set>
+			<if test="id != null">ID = #{id},</if>
+			<if test="from != null">FROM = #{from},</if>
+			<if test="to != null">TO = #{to},</if>
+			<if test="title != null">TITLE = #{title},</if>
+			<if test="content != null">CONTENT = #{content},</if>
+		</set>
+		WHERE ID=#{id}
+	</update>
+
+
+	<delete id="deleteByIds" parameterType="java.math.BigDecimal">
+		DELETE FROM xy_message t WHERE
+		ID
+		in
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--生成器生成代码，需要自己手动修改java属性名 -->
+	<insert id="insertModels" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			INSERT INTO xy_message
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="id != null">ID,</if>
+				<if test="from != null">FROM,</if>
+				<if test="to != null">TO,</if>
+				<if test="title != null">TITLE,</if>
+				<if test="content != null">CONTENT,</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="id != null">#{id},</if>
+				<if test="from != null">#{from},</if>
+				<if test="to != null">#{to},</if>
+				<if test="title != null">#{title},</if>
+				<if test="content != null">#{content},</if>
+			</trim>
+		</foreach>
+	</insert>
+
+	<!--生成器生成代码，需要自己手动修改java属性名 -->
+	<update id="updateModels" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			UPDATE xy_message
+			<set>
+				<if test="id != null">ID = #{id},</if>
+				<if test="from != null">FROM = #{from},</if>
+				<if test="to != null">TO = #{to},</if>
+				<if test="title != null">TITLE = #{title},</if>
+				<if test="content != null">CONTENT = #{content},</if>
+			</set>
+			WHERE ID=#{id}
+		</foreach>
+	</update>
+
+
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xyan.frame.security.dao.ResourceDao">
+
+	<sql id="Base_Column_List">
+		ID as "id"
+		, PID as "pid"
+		, RESOURCE_NAME as "resourceName"
+		, ICON as "icon"
+		, URL as "url"
+		, AVAILABLE as "available"
+		, PERMISSION as "permission"
+	</sql>
+
+	<select id="selectByPrimaryKey" resultType="com.xyan.frame.security.model.ResourceModel"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from xy_resource
+		where
+		ID=#{id}
+	</select>
+
+	<select id="selectByExample" resultType="com.xyan.frame.security.model.ResourceModel"
+		parameterType="com.xyan.frame.security.model.ResourceModel">
+		select
+		<include refid="Base_Column_List" />
+		from xy_resource
+		<where>
+			<if test="id!=null">and ID=#{id}</if>
+			<if test="pid!=null">and PID=#{pid}</if>
+			<if test="resourceName!=null">and RESOURCE_NAME=#{resourceName}</if>
+			<if test="icon!=null">and ICON=#{icon}</if>
+			<if test="url!=null">and URL=#{url}</if>
+			<if test="permission !=null">and PERMISSION=#{permission}</if>
+			<if test="available!=null">and AVAILABLE=#{available}</if>
+		</where>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from xy_resource
+		where ID=#{id}
+	</delete>
+
+
+	<insert id="insert" parameterType="com.xyan.frame.security.model.ResourceModel">
+		insert into xy_resource
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+
+			<if test="id != null">ID,</if>
+			<if test="pid != null">PID,</if>
+			<if test="resourceName != null">RESOURCE_NAME,</if>
+			<if test="icon != null">ICON,</if>
+			<if test="url != null">URL,</if>
+			<if test="permission != null">PERMISSION,</if>
+			<if test="available != null">AVAILABLE,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="pid != null">#{pid},</if>
+			<if test="resourceName != null">#{resourceName},</if>
+			<if test="icon != null">#{icon},</if>
+			<if test="url != null">#{url},</if>
+			<if test="permission != null">#{permission},</if>
+			<if test="available != null">#{available},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.xyan.frame.security.model.ResourceModel">
+		update xy_resource
+		<set>
+			<if test="id != null">ID =#{id},</if>
+			<if test="pid != null">PID =#{pid},</if>
+			<if test="resourceName != null">RESOURCE_NAME =#{resourceName},</if>
+			<if test="icon != null">ICON =#{icon},</if>
+			<if test="url != null">URL =#{url},</if>
+			<if test="permission != null">PERMISSION =#{permission},</if>
+			<if test="available != null">AVAILABLE =#{available},</if>
+		</set>
+		where ID=#{id}
+	</update>
+
+
+	<delete id="deleteByIds" parameterType="java.lang.Long">
+		delete from xy_resource t where
+		ID
+		in
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="queryRoleResource" parameterType="com.xyan.frame.security.model.RoleModel">
+		SELECT PERMISSION from xy_resource  res LEFT JOIN xy_role_resource  rres on res.ID=rres.RESOURCE_ID
+		where rres.ROLE_ID in 
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			#{item.roleId}
+		</foreach>
+		
+	</select>
+</mapper>

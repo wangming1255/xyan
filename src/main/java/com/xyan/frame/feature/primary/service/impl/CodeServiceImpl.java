@@ -1,7 +1,5 @@
 package com.xyan.frame.feature.primary.service.impl;
 
-import javax.xml.rpc.ServiceException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

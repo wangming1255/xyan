@@ -10,10 +10,42 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-03-08 17:37:20
+Date: 2016-05-26 16:57:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for xy_article
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_article`;
+CREATE TABLE `xy_article` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `TITLE` varchar(255) NOT NULL COMMENT '标题',
+  `CONTENT` text COMMENT '内容',
+  `USER_ID` bigint(20) NOT NULL COMMENT '作者',
+  `CREATE_TIME` datetime NOT NULL COMMENT '创建时间',
+  `UPDATE_TIME` datetime NOT NULL COMMENT '最后修改时间',
+  `TYPE_ID` bigint(20) DEFAULT NULL COMMENT '类型',
+  `KEY_WORD` varchar(255) DEFAULT NULL COMMENT '关键词（多个用，隔开）',
+  `PRODUCE1` varchar(255) DEFAULT NULL COMMENT '介绍1',
+  `READ_COUNT` int(11) NOT NULL DEFAULT '0' COMMENT '阅读次数',
+  `COMMENT_COUNT` int(11) NOT NULL DEFAULT '0' COMMENT '评论次数',
+  `PRODUCE2` varchar(255) DEFAULT NULL COMMENT '介绍2',
+  `IMG_URL` varchar(255) DEFAULT NULL COMMENT '图片地址',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章（博客）';
+
+-- ----------------------------
+-- Table structure for xy_article_type
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_article_type`;
+CREATE TABLE `xy_article_type` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `NAME` varchar(255) NOT NULL COMMENT '名称',
+  `PID` bigint(20) NOT NULL COMMENT '父级ID(根为-1)',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for xy_code
@@ -24,6 +56,69 @@ CREATE TABLE `xy_code` (
   `VALUE` varchar(20) DEFAULT NULL COMMENT '主键值',
   PRIMARY KEY (`MODEL_NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='主键生成表';
+
+-- ----------------------------
+-- Table structure for xy_head
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_head`;
+CREATE TABLE `xy_head` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `NAME` varchar(255) DEFAULT NULL COMMENT '头名称',
+  `VALUE` varchar(255) DEFAULT NULL COMMENT '值',
+  `PAGE_ID` bigint(11) DEFAULT NULL COMMENT '关联页面的ID',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for xy_job
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_job`;
+CREATE TABLE `xy_job` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `JOB_NAME` varchar(255) DEFAULT NULL COMMENT '任务名称',
+  `JOB_GROUP` varchar(255) DEFAULT NULL COMMENT '任务分组',
+  `JOB_STATUS` varchar(255) DEFAULT NULL COMMENT '任务状态 0禁用 1启用 2删除',
+  `CRON_EXPRESSION` varchar(255) DEFAULT NULL COMMENT '表达式',
+  `REMARK` varchar(255) DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务';
+
+-- ----------------------------
+-- Table structure for xy_log
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_log`;
+CREATE TABLE `xy_log` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `LOG_DATE` datetime DEFAULT NULL COMMENT 'log时间',
+  `CONTENT` varchar(255) DEFAULT NULL COMMENT '记录内容',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for xy_message
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_message`;
+CREATE TABLE `xy_message` (
+  `ID` bigint(11) NOT NULL COMMENT '主键',
+  `FROM` bigint(255) NOT NULL COMMENT '发自',
+  `TO` bigint(20) DEFAULT NULL COMMENT '目标，公共发言为-1',
+  `TITLE` varchar(255) DEFAULT NULL COMMENT '标题',
+  `CONTENT` varchar(255) DEFAULT NULL COMMENT '内容',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息';
+
+-- ----------------------------
+-- Table structure for xy_page
+-- ----------------------------
+DROP TABLE IF EXISTS `xy_page`;
+CREATE TABLE `xy_page` (
+  `ID` bigint(20) NOT NULL COMMENT '主键',
+  `URL` varchar(255) DEFAULT NULL COMMENT '抓取的url地址',
+  `STATUS` int(11) DEFAULT NULL COMMENT '抓取的状态码',
+  `RESULT` varchar(21500) DEFAULT NULL COMMENT '抓取到的页面内容',
+  `GRAB_DATE` datetime DEFAULT NULL COMMENT '抓取时间',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='抓取的页面';
 
 -- ----------------------------
 -- Table structure for xy_resource

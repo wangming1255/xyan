@@ -70,7 +70,7 @@
                     <!-- 压缩后保存文件后缀 无后缀 -->
                     <nosuffix>true</nosuffix>
                     <!-- 源目录，即需压缩的根目录 -->
-                    <sourceDirectory>${basedir}/target/inxedu</sourceDirectory>
+                    <sourceDirectory>${basedir}/target/xyan</sourceDirectory>
                     <!-- 压缩js和css文件 -->
                     <includes>
                         <include>**/*.js</include>
@@ -82,7 +82,7 @@
                         <exclude>**/*.min.css</exclude>
                     </excludes>
                     <!-- 压缩后输出文件目录 -->
-                    <outputDirectory>${basedir}/target/inxedu</outputDirectory>
+                    <outputDirectory>${basedir}/target/xyan</outputDirectory>
                 </configuration>
             </plugin>
 		</plugins>

@@ -1,8 +1,5 @@
 package com.xyan.frame.grab.service;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.xyan.frame.base.service.GenericService;
 import com.xyan.frame.grab.model.PageModel;
 

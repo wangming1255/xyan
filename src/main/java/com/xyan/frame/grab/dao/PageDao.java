@@ -1,12 +1,7 @@
 package com.xyan.frame.grab.dao;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.feature.mybatis.annotation.MyBatisRepository;
-
-
 import com.xyan.frame.grab.model.PageModel;
 
 /**

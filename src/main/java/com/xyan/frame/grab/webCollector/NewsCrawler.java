@@ -53,7 +53,6 @@ public class NewsCrawler extends BreadthCrawler {
 
 	@Override
 	public void visit(Page page, Links nextLinks) {
-		String url = page.getUrl();
         Document doc = page.getDoc();
 	    nextLinks.addAllFromDocument(doc);
             /*如果你想添加新的爬取任务，可以向next中添加爬取任务，

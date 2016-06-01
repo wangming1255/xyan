@@ -1,18 +1,14 @@
 package com.xyan.frame.grab.service.impl;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.base.service.impl.GenericServiceImpl;
-import com.xyan.frame.grab.service.PageService;
-import com.xyan.frame.grab.model.PageModel;
 import com.xyan.frame.grab.dao.PageDao;
+import com.xyan.frame.grab.model.PageModel;
+import com.xyan.frame.grab.service.PageService;
 
 /**
  *@Description：抓取的页面 -- Servcie实现类

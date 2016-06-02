@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>  
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="sitemesh"%>
 
 <!doctype html>
 <html>
@@ -10,13 +10,13 @@
 <meta name="Keywords" content="">
 <meta name="Description" content="">
  <%@ include file="/WEB-INF/views/layouts/static.jsp"%>
-<sitemesh:head/>
+ <sitemesh:head></sitemesh:head>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/layouts/header.jsp"%>
 <article>
 	<div id="sitemeshBody" style="float: left;">
-		<sitemesh:body/>
+		<sitemesh:body></sitemesh:body>
 	</div>
 	<aside class="navsidebar">
 		<h2>

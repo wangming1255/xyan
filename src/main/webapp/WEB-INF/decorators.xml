@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/views/layouts/">
-
-	<!-- 不走布局的url -->
 	<excludes>
-		<pattern>/static/*</pattern>
-		<pattern>/article/*</pattern>
-		<pattern>/kindeditor/*</pattern>
-		<pattern>/*/ajax/*</pattern>
-		<pattern>/admin</pattern>
-		<pattern>/admin/</pattern>
-		<pattern>/admin/main/login</pattern>
-		<pattern>/admin/func/showchild</pattern>
-		<pattern>/front/playkpoint*</pattern>
-		<pattern>/admin/main/login</pattern>
-		<pattern>/zfbpay/*/*</pattern>
-		<pattern>/uc/play/*</pattern>
-		<pattern>/base1.jsp</pattern>
+		<pattern>/static/**</pattern>
+		<pattern>/api/**</pattern><!-- 此处应该不是必须的，SiteMesh针对text/html做特殊处理 -->
+		<pattern>/**/**/pageData</pattern><!-- 分页数据-->
+		<pattern>/**/**/pageData/**</pattern>
 	</excludes>
-	<!-- 后台管理布局 -->
-	<decorator name="admindefault" page="admin/default.jsp">
-		<pattern>/admin/*</pattern>
-		<pattern>/admin/**/*</pattern>
+	
+	<decorator-mappers>
+		<mapper class="com.opensymphony.module.sitemesh.mapper.PageDecoratorMapper" >
+			<param name="property.1" value="meta.decorator"/>
+		</mapper>
+	</decorator-mappers>
+	<decorator name="nodecorate" />
+	
+	<!--====================后台系统配置管理===================-->
+	<decorator name="admin" page="admin/main.jsp">
+		<pattern>/admin/**</pattern>
 	</decorator>
-	<!-- edu前端布局 -->
-	<decorator name="edudefault" page="web/default.jsp">
-		<pattern>/front/*/*</pattern>
-		<pattern>/front/*</pattern>
-		<pattern>/index</pattern>
-		<pattern>/</pattern>
-	</decorator>
-	<decorator name="ucdefault" page="web/uc/default_uc.jsp">
-		<pattern>/uc/*</pattern>
-		<pattern>/uc/**/*</pattern>
-	</decorator>
+	
+	<!-- 前端展示页面 -->
+    <decorator name="tzxm" page="main.jsp">
+     	<pattern>/blog/**</pattern>
+     	<pattern>/index</pattern>
+    </decorator>
+	
 </decorators>

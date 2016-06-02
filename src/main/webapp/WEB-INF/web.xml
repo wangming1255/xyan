@@ -24,19 +24,6 @@
 		<listener-class>com.xyan.frame.feature.web.InitialListener</listener-class>
 	</listener>
 
-	<!-- 增加对sitemesh的支持 -->
-	<filter>
-		<description>sitemesh过滤请求</description>
-		<filter-name>sitemesh</filter-name>
-		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>ERROR</dispatcher> 
-        <dispatcher>FORWARD</dispatcher> 
-	</filter-mapping>
-
 	<filter>
 		<filter-name>secureFilter</filter-name>
 		<filter-class>com.xyan.frame.security.web.filter.SecureFilter</filter-class>
@@ -139,6 +126,20 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.swf</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 增加对sitemesh的支持 -->
+	<filter>
+    	<filter-name>sitemeshFilter</filter-name>
+		<description>sitemesh过滤请求</description>
+   		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+    	<filter-name>sitemeshFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+		<dispatcher>ERROR</dispatcher> 
+        <dispatcher>FORWARD</dispatcher> 
+  	</filter-mapping>
+  	
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

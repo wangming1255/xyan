@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<title>后台管理首页</title>
 <div class="page-header">
 	<h1>
 		控制台 <small> <i class="icon-double-angle-right"></i> 查看

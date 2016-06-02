@@ -136,8 +136,6 @@
   	<filter-mapping>
     	<filter-name>sitemeshFilter</filter-name>
     	<url-pattern>/*</url-pattern>
-		<dispatcher>ERROR</dispatcher> 
-        <dispatcher>FORWARD</dispatcher> 
   	</filter-mapping>
   	
 	<servlet>

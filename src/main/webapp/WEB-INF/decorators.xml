@@ -15,12 +15,12 @@
 	<decorator name="nodecorate" />
 	
 	<!--====================后台系统配置管理===================-->
-	<decorator name="admin" page="admin/main.jsp">
+	<decorator name="sys" page="admin/main.jsp">
 		<pattern>/admin/**</pattern>
 	</decorator>
 	
 	<!-- 前端展示页面 -->
-    <decorator name="tzxm" page="main.jsp">
+    <decorator name="front" page="main.jsp">
      	<pattern>/blog/**</pattern>
      	<pattern>/index</pattern>
     </decorator>

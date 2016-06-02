@@ -1,16 +1,16 @@
-package com.xyan.frame.message.dao;
+package com.xyan.blog.dao;
 
+import com.xyan.blog.model.MessageModel;
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.feature.mybatis.annotation.MyBatisRepository;
-import com.xyan.frame.message.model.MessageModel;
 
 /**
- * @description  消息--dao层接口
+ * @description 消息 --dao层接口
  * @author wangming
- * @Date:2016-04-28 10:07:41
+ * @email：w18855525068@163.com
+ * @Date:2016-05-30 15:25:02
  */
 @MyBatisRepository
 public interface MessageDao extends GenericDao<MessageModel, Long>{
 
-	
-}
+ }

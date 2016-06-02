@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xyan.frame.security.model.UserModel;
-import com.xyan.frame.security.service.ResourceService;
 import com.xyan.frame.util.PropertiesUtil;
 
 /**
@@ -62,12 +61,13 @@ public class SecureFilter implements Filter {
 	}
 
 	private boolean check(String url,UserModel user){
-		if(user!=null&&user.getId().longValue()==1L){
+		return true;
+		/*if(user!=null&&user.getId().longValue()==1L){
 			return true;
 		}else if(url.endsWith("admin/login")){
 			return true;
 		}else{
 			return false;
-		}
+		}*/
 	}
 }

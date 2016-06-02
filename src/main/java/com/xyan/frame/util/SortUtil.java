@@ -405,9 +405,9 @@ public class SortUtil {
 			times++;
 		}
 		// 建立十个队列
-		List<ArrayList> queue = new ArrayList<ArrayList>();
+		List<ArrayList<Integer>> queue = new ArrayList<ArrayList<Integer>>();
 		for (int i = 0; i < 10; i++) {
-			ArrayList queue1 = new ArrayList();
+			ArrayList<Integer> queue1 = new ArrayList<Integer>();
 			queue.add(queue1);
 		}
 		// 进行times次分配和收集
@@ -416,7 +416,7 @@ public class SortUtil {
 			for (int j = 0; j < a.length; j++) {
 				int x = a[j] % (int) Math.pow(10, i + 1)
 						/ (int) Math.pow(10, i);
-				ArrayList queue2 = queue.get(x);
+				ArrayList<Integer> queue2 = queue.get(x);
 				queue2.add(a[j]);
 				queue.set(x, queue2);
 			}

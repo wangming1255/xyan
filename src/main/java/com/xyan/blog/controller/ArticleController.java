@@ -30,7 +30,7 @@ import com.xyan.frame.feature.web.MediaTypes;
  *@Date:2016-05-16 10:32:51
  */
 @Controller
-@RequestMapping(value = "blog/article")
+@RequestMapping(value = "/blog/article")
 public class ArticleController {
 
 	private static final Logger logger = Logger.getLogger(ArticleController.class);

@@ -26,6 +26,7 @@ import com.xyan.frame.security.web.controller.UserController;
  * @author wangming
  */
 @Controller
+@RequestMapping(value="/index")
 public class IndexController {
 	
 	protected Logger logger = Logger.getLogger(UserController.class);
@@ -33,7 +34,7 @@ public class IndexController {
 	@Autowired 
 	private ArticleService articleService;
 	
-	@RequestMapping(value="index",method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView index(){
 		return new ModelAndView("index").addObject("page", articleService.selectByPage(null, new Page<HashMap<String,Object>>()));
 	}

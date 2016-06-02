@@ -32,5 +32,6 @@ public class SpringRest {
         }
         HttpMessageConverter<?> converter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
         converterList.add(converter);
+        restTemplate.setMessageConverters(converterList);
 	}
 }

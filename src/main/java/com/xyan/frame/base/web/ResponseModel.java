@@ -1,10 +1,14 @@
 package com.xyan.frame.base.web;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import org.codehaus.jackson.map.JsonMappingException;
+import org.springframework.dao.DataAccessException;
 
 import com.xyan.frame.base.model.BaseModel;
 
-public class ResponseModel {
+public class ResponseModel<model extends BaseModel>{
 	/**消息*/
 	private String message;
 	/**返回的状态码*/
@@ -26,7 +30,7 @@ public class ResponseModel {
 	/**数据*/
 	private BaseModel modelData;
 	/**集合数据*/
-	private List<BaseModel> listData;
+	private List<model> listData;
 	
 	
 	public ResponseModel() {
@@ -46,7 +50,7 @@ public class ResponseModel {
 		return timestamp;
 	}
 
-	public ResponseModel setTimestamp(long timestamp) {
+	public ResponseModel<model> setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}
@@ -55,7 +59,7 @@ public class ResponseModel {
 		return returnCode;
 	}
 
-	public ResponseModel setReturnCode(String returnCode) {
+	public ResponseModel<model> setReturnCode(String returnCode) {
 		this.returnCode = returnCode;
 		return this;
 	}
@@ -64,7 +68,7 @@ public class ResponseModel {
 		return message;
 	}
 
-	public ResponseModel setMessage(String message) {
+	public ResponseModel<model> setMessage(String message) {
 		this.message = message;
 		return this;
 	}
@@ -73,7 +77,7 @@ public class ResponseModel {
 		return str1;
 	}
 
-	public ResponseModel setStr1(String str1) {
+	public ResponseModel<model> setStr1(String str1) {
 		this.str1 = str1;
 		return this;
 	}
@@ -82,7 +86,7 @@ public class ResponseModel {
 		return str2;
 	}
 
-	public ResponseModel setStr2(String str2) {
+	public ResponseModel<model> setStr2(String str2) {
 		this.str2 = str2;
 		return this;
 	}
@@ -91,7 +95,7 @@ public class ResponseModel {
 		return long1;
 	}
 
-	public ResponseModel setLong1(Long long1) {
+	public ResponseModel<model> setLong1(Long long1) {
 		this.long1 = long1;
 		return this;
 	}
@@ -100,7 +104,7 @@ public class ResponseModel {
 		return long2;
 	}
 
-	public ResponseModel setLong2(Long long2) {
+	public ResponseModel<model> setLong2(Long long2) {
 		this.long2 = long2;
 		return this;
 	}
@@ -109,7 +113,7 @@ public class ResponseModel {
 		return success;
 	}
 
-	public ResponseModel setSuccess(boolean success) {
+	public ResponseModel<model> setSuccess(boolean success) {
 		this.success = success;
 		return this;
 	}
@@ -119,7 +123,7 @@ public class ResponseModel {
 		return login;
 	}
 
-	public ResponseModel setLogin(boolean login) {
+	public ResponseModel<model> setLogin(boolean login) {
 		this.login = login;
 		return this;
 	}
@@ -129,19 +133,33 @@ public class ResponseModel {
 	public void setModelData(BaseModel modelData) {
 		this.modelData = modelData;
 	}
-	public List<BaseModel> getListData() {
+	public List<model> getListData() {
 		return listData;
 	}
-	public void setListData(List<BaseModel> listData) {
+	public void setListData(List<model> listData) {
 		this.listData = listData;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static ResponseModel from(Exception e){
 		ResponseModel response=new ResponseModel();
 		response.setSuccess(false);
 		response.setReturnCode("500");
-		response.setMessage(e.getMessage());
+		response.setMessage(getTextFromException(e));
 		response.setTimestamp(System.currentTimeMillis());
 		return response;
 	}
+	
+	 public static String getTextFromException(Exception e){
+		e.printStackTrace();
+		String message=e.getMessage();
+		if(e instanceof SQLException||e instanceof DataAccessException||e instanceof JsonMappingException){
+			message="您输入了不合法的数据，服务器拒绝响应！";
+		}else if(org.apache.commons.lang.StringUtils.isBlank(message)){
+			message="操作失败！";
+		}else if(e instanceof ClassCastException||e instanceof IndexOutOfBoundsException||e instanceof NullPointerException||e instanceof StringIndexOutOfBoundsException){
+			message="系统异常，请联系管理员！";
+		}
+		return message;
+	 }
 }

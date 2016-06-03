@@ -2,6 +2,7 @@ package com.xyan.frame.feature.web.exception;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
@@ -87,7 +90,7 @@ public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerEx
         if( null == returnValue) {
             returnValue = new ModelAndView();
             if (null == returnValue.getViewName()) {
-                returnValue.addObject("errorMessage", exception.getMessage()).setViewName(defaultErrorView);
+                returnValue.addObject("errorMessage", ResponseModel.getTextFromException(exception)).setViewName(defaultErrorView);
             }
         }
         return returnValue;

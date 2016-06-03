@@ -6,10 +6,12 @@
 
 	<sql id="Base_Column_List">
 		ID as "id"
-		, PID as "pid"
+		, PID as "pId"
 		, RESOURCE_NAME as "resourceName"
 		, ICON as "icon"
+		, ICON_BACK as "iconBack"
 		, URL as "url"
+		,LEVEL as "level"
 		, AVAILABLE as "available"
 		, PERMISSION as "permission"
 	</sql>
@@ -30,10 +32,10 @@
 		from xy_resource
 		<where>
 			<if test="id!=null">and ID=#{id}</if>
-			<if test="pid!=null">and PID=#{pid}</if>
-			<if test="resourceName!=null">and RESOURCE_NAME=#{resourceName}</if>
-			<if test="icon!=null">and ICON=#{icon}</if>
-			<if test="url!=null">and URL=#{url}</if>
+			<if test="pId !=null">and PID=#{pId}</if>
+			<if test="resourceName !=null">and RESOURCE_NAME=#{resourceName}</if>
+			<if test="url !=null">and URL=#{url}</if>
+			<if test="level !=null">and LEVEL=#{level}</if>
 			<if test="permission !=null">and PERMISSION=#{permission}</if>
 			<if test="available!=null">and AVAILABLE=#{available}</if>
 		</where>
@@ -48,23 +50,26 @@
 	<insert id="insert" parameterType="com.xyan.frame.security.model.ResourceModel">
 		insert into xy_resource
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-
 			<if test="id != null">ID,</if>
-			<if test="pid != null">PID,</if>
+			<if test="pId != null">PID,</if>
 			<if test="resourceName != null">RESOURCE_NAME,</if>
 			<if test="icon != null">ICON,</if>
+			<if test="iconBack != null">ICON_BACK,</if>
 			<if test="url != null">URL,</if>
 			<if test="permission != null">PERMISSION,</if>
 			<if test="available != null">AVAILABLE,</if>
+			<if test="level != null">LEVEL,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">#{id},</if>
-			<if test="pid != null">#{pid},</if>
+			<if test="pId != null">#{pId},</if>
 			<if test="resourceName != null">#{resourceName},</if>
 			<if test="icon != null">#{icon},</if>
+			<if test="iconBack != null">#{iconBack},</if>
 			<if test="url != null">#{url},</if>
 			<if test="permission != null">#{permission},</if>
 			<if test="available != null">#{available},</if>
+			<if test="level != null">#{level},</if>
 		</trim>
 	</insert>
 
@@ -72,12 +77,14 @@
 		update xy_resource
 		<set>
 			<if test="id != null">ID =#{id},</if>
-			<if test="pid != null">PID =#{pid},</if>
+			<if test="pId != null">PID =#{pId},</if>
 			<if test="resourceName != null">RESOURCE_NAME =#{resourceName},</if>
 			<if test="icon != null">ICON =#{icon},</if>
+			<if test="iconBack != null">ICON_BACK =#{iconBack},</if>
 			<if test="url != null">URL =#{url},</if>
 			<if test="permission != null">PERMISSION =#{permission},</if>
 			<if test="available != null">AVAILABLE =#{available},</if>
+			<if test="level != null">LEVEL =#{level},</if>
 		</set>
 		where ID=#{id}
 	</update>

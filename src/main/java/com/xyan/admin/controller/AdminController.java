@@ -1,6 +1,7 @@
 package com.xyan.admin.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,4 +22,11 @@ public class AdminController {
 	public String login(){
 		return "admin/login";
 	}
+	
+	@RequestMapping(value="{other}",method=RequestMethod.GET)
+	public String other(@PathVariable String other){
+		
+		return "admin/"+other;
+	}
+	
 }

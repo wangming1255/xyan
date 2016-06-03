@@ -20,6 +20,13 @@ public interface GenericService<Model extends BaseModel, PK> {
      * @param model 对象
      */
     int insert(Model model);
+    
+    /**
+     * 插入或者更新
+     * @param model
+     * @return
+     */
+    int insertOrUpdate(Model model);
 
     /**
      * 更新单个对象

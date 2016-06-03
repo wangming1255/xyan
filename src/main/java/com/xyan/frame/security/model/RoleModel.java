@@ -11,7 +11,15 @@ public class RoleModel extends BaseModel {
 	
 	private Long pId;//父级角色
 	private String roleName;//资源名称
+	private int level;//层级
 	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public RoleModel() {
 		
 	}
@@ -25,6 +33,9 @@ public class RoleModel extends BaseModel {
 		return pId;
 	}
 	public void setpId(Long pId) {
+		if(pId==null){
+			pId=0L;
+		}
 		this.pId = pId;
 	}
 	

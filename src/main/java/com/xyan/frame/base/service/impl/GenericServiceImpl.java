@@ -48,6 +48,13 @@ public abstract class GenericServiceImpl<Model extends BaseModel, PK> implements
         return getDao().update(model);
     }
 
+    public int insertOrUpdate(Model model) {
+    	if(model.getId()==null){
+    		return this.insert(model);
+    	}else{
+    		return this.update(model);
+    	}
+    }
     /**
      * 通过主键, 删除对象
      * @param id 主键

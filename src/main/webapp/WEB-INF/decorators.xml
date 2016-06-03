@@ -5,6 +5,7 @@
 		<pattern>/api/**</pattern><!-- 此处应该不是必须的，SiteMesh针对text/html做特殊处理 -->
 		<pattern>/**/**/pageData</pattern><!-- 分页数据-->
 		<pattern>/**/**/pageData/**</pattern>
+		<pattern>/**/**/dialog/**</pattern>
 	</excludes>
 	
 	<decorator-mappers>

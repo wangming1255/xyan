@@ -20,9 +20,9 @@
 	<div id="nav">
 		<ul>
 			<li><a href="${path}">网站首页</a></li>
-			<li><a href="${path}/life"  title="慢生活">慢生活</a></li>
-			<li><a href="${path}/blog"  title="技术探讨">技术探讨</a></li>
-			<li><a href="${path}/talk" title="碎言碎语">碎言碎语</a></li>
+			<li><a href="${path}/blog/life"  title="慢生活">慢生活</a></li>
+			<li><a href="${path}/blog/article"  title="技术探讨">技术探讨</a></li>
+			<li><a href="${path}/blog/talk" title="碎言碎语">碎言碎语</a></li>
 			<li><a href="${path}/blog/board" title="留言版">留言版</a></li>
 		</ul>
 		<script src="${path}/static/js/silder.js"></script>

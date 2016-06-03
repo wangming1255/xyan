@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>后台管理</title>
+<title><sitemesh:title default="后台管理"/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
 <link href="${path}/static/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -15,11 +15,16 @@
 <![endif]-->
 <!-- page specific plugin styles -->
 <!-- fonts -->
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+<link rel="stylesheet" href="${path}/static/googleapis/css.css"/>
 <!-- ace styles -->
 <link rel="stylesheet" href="${path}/static/assets/css/ace.min.css" />
 <link rel="stylesheet" href="${path}/static/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="${path}/static/assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="${path}/static/assets/css/style.css" />
+<link rel="stylesheet" href="${path}/static/jQuery.cxDialog/css/jquery.cxdialog.css" />
+<script type="text/javascript">
+	var path="${path}";
+</script>
 <!--[if lte IE 8]>
 <link rel="stylesheet" href="${path}/static/assets/css/ace-ie.min.css" />
 <![endif]-->
@@ -32,9 +37,6 @@
 <script src="${path}/static/assets/js/respond.min.js"></script>
 <![endif]-->
 <!-- basic scripts -->
-<!--[if !IE]> -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<!-- <![endif]-->
 <!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <![endif]-->
@@ -287,6 +289,14 @@
 			<!-- #sidebar-shortcuts -->
 			<ul class="nav nav-list">
 				<li class="active"><a href="${path}/admin/index"><i class="icon-dashboard"></i> <span class="menu-text"> 控制台 </span></a></li>
+				<li>
+					<a href="#" class="dropdown-toggle"><i class="icon-desktop"></i> <span class="menu-text">权限管理</span><b class="arrow icon-angle-down"></b></a>
+					<ul class="submenu">
+						<li><a href="${path}/admin/authority/role"><i class="icon-double-angle-right"></i>角色</a></li>
+						<li><a href="${path}/admin/authority/resource"><i class="icon-double-angle-right"></i>资源</a></li>
+					</ul>
+				</li>
+				
 				<li><a href="${path}/admin/typography"> <i class="icon-text-width"></i><span class="menu-text"> 文字排版 </span></a></li>
 				<li>
 					<a href="#" class="dropdown-toggle"><i class="icon-desktop"></i> <span class="menu-text"> UI 组件 </span><b class="arrow icon-angle-down"></b></a>
@@ -371,32 +381,7 @@
 			</script>
 		</div>
 		<div class="main-content">
-			<div class="breadcrumbs" id="breadcrumbs">
-				<script type="text/javascript">
-					try {
-						ace.settings.check('breadcrumbs', 'fixed')
-					} catch (e) {
-					}
-				</script>
-
-				<ul class="breadcrumb">
-					<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-					<li class="active">控制台</li>
-				</ul>
-				<!-- .breadcrumb -->
-
-				<div class="nav-search" id="nav-search">
-					<form class="form-search">
-						<span class="input-icon"> 
-							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" /> <i class="icon-search nav-search-icon"></i>
-						</span>
-					</form>
-				</div>
-				<!-- #nav-search -->
-			</div>
-			<div class="page-content">
-				<sitemesh:body/>
-			</div>
+			<sitemesh:body/>
 			<!-- /.page-content -->
 		</div>
 		<!-- /.main-content -->
@@ -473,6 +458,7 @@
 <!-- ace scripts -->
 <script src="${path}/static/assets/js/ace-elements.min.js"></script>
 <script src="${path}/static/assets/js/ace.min.js"></script>
+<script src="${path}/static/jQuery.cxDialog/js/jquery.cxdialog.js"></script>
 <!-- inline scripts related to this page -->
 
 </body>

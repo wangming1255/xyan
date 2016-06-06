@@ -2,8 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <title>资源管理</title>
 <style>
-.menu-2{text-indent: 4em;}
-.menu-3{text-indent: 8em;}
+.menu-2{text-indent: 2em;}
+.menu-3{text-indent: 4em;}
+.menu-4{text-indent: 6em;}
 </style>
 <div class="breadcrumbs" id="breadcrumbs">
 	<script type="text/javascript">

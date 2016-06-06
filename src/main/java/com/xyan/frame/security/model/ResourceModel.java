@@ -1,5 +1,7 @@
 package com.xyan.frame.security.model;
 
+import java.util.List;
+
 import com.xyan.frame.base.model.BaseModel;
 
 
@@ -18,13 +20,22 @@ public class ResourceModel extends BaseModel {
 	private String permission;//权限字符串
 	private String resourceType;//资源类型
 	private Long available;//0 不可用 1 可用 默认可用
-	private int level;//层级
+	private Integer level;//层级
+	List<ResourceModel> children;
 	
-	public int getLevel() {
+	public List<ResourceModel> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<ResourceModel> children) {
+		this.children = children;
+	}
+
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 

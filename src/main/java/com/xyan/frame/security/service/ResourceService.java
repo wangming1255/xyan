@@ -13,4 +13,6 @@ public interface ResourceService extends GenericService<ResourceModel, Long>{
 	public boolean check(String url,Long userId);
 
 	public List<String> queryRoleResource(List<RoleModel> roles);
+	
+	public ResourceModel getResourceTree(Long rootId);
 }

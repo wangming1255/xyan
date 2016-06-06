@@ -25,6 +25,7 @@ public class ResourceController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView role(){
+		ResourceModel model=resourceService.getResourceTree(1L);
 		return new ModelAndView("/admin/authority/resource").addObject("resourceList", resourceService.selectByExample(null));
 	}
 	

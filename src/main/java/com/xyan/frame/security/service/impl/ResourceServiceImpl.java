@@ -42,4 +42,19 @@ public class ResourceServiceImpl extends GenericServiceImpl<ResourceModel, Long>
 		
 		return resourceDao.queryRoleResource(roles);
 	}
+
+	
+	
+	@Override
+	public ResourceModel getResourceTree(Long rootId) {
+		ResourceModel root=resourceDao.selectByPrimaryKey(rootId);
+		ResourceModel rootQuery=new ResourceModel();
+		rootQuery.setpId(root.getId());
+		List<ResourceModel> childList=resourceDao.selectByExample(rootQuery);
+		for (ResourceModel resourceModel : childList) {
+			resourceModel=getResourceTree(resourceModel.getId());
+		}
+		root.setChildren(childList);
+		return root;
+	}
 }

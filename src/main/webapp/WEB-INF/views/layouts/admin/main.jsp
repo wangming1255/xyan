@@ -296,6 +296,9 @@
 						<li><a href="${path}/admin/authority/resource"><i class="icon-double-angle-right"></i>资源</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="${path}/admin/article" class="dropdown-toggle"><i class="icon-desktop"></i> <span class="menu-text">文章管理</span></a>
+				</li>
 				
 				<li><a href="${path}/admin/typography"> <i class="icon-text-width"></i><span class="menu-text"> 文字排版 </span></a></li>
 				<li>

@@ -1,10 +1,7 @@
 package com.xyan.blog.service;
 
-import java.util.HashMap;
-import java.util.List;
-
-import com.xyan.frame.base.service.GenericService;
 import com.xyan.blog.model.ArticleModel;
+import com.xyan.frame.base.service.GenericService;
 
 /**
  *@Description：文章（博客） --Servcie

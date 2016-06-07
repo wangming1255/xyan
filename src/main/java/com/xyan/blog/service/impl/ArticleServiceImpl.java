@@ -1,18 +1,16 @@
 package com.xyan.blog.service.impl;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xyan.blog.dao.ArticleDao;
+import com.xyan.blog.model.ArticleModel;
+import com.xyan.blog.service.ArticleService;
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.base.service.impl.GenericServiceImpl;
-import com.xyan.blog.service.ArticleService;
-import com.xyan.blog.model.ArticleModel;
-import com.xyan.blog.dao.ArticleDao;
 
 /**
  *@Description：文章（博客） -- Servcie实现类
@@ -31,5 +29,24 @@ public class ArticleServiceImpl extends GenericServiceImpl<ArticleModel, Long> i
 	@Override
 	public GenericDao<ArticleModel, Long> getDao() {
 		return  articleDao;
+	}
+	
+	@Override
+	public int insert(ArticleModel model) {
+		//默认值
+		model.setUserId(1L);
+		
+		//初始值
+		model.setCreateTime(new Date());
+		model.setUpdateTime(new Date());
+		model.setReadCount(1);
+		model.setCommentCount(1);
+		return super.insert(model);
+	}
+	
+	@Override
+	public int update(ArticleModel model) {
+		model.setUpdateTime(new Date());
+		return super.update(model);
 	}
 }

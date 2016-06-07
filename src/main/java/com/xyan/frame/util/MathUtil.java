@@ -21,7 +21,6 @@ public class MathUtil {
 		} catch (Exception e) {
 			return Long.MAX_VALUE;
 		}
-		
 	}
 	
 	/***

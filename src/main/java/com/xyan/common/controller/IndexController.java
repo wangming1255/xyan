@@ -1,5 +1,12 @@
 package com.xyan.common.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +28,8 @@ import com.xyan.blog.service.ArticleService;
 import com.xyan.frame.base.web.ResponseModel;
 import com.xyan.frame.feature.mybatis.intercept.Page;
 import com.xyan.frame.security.web.controller.UserController;
+import com.xyan.frame.util.FileUtil;
+import com.xyan.frame.util.PropertiesUtil;
 
 /**
  * This controller is system home page.It provides all the common service and home service;
@@ -63,4 +73,40 @@ public class IndexController {
 			return new ResponseModel(false,"上传失败！");
 		}
 	}
+	
+	@RequestMapping(value="wangEditor/upload")
+	public void ueConfig(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String projectUrl=PropertiesUtil.getProperties("project.url");
+		String basePath =PropertiesUtil.getProperties("file.upload.path");
+		String now=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		MultipartRequest multipartRequest = (MultipartRequest) request;
+		MultipartFile mfile = (MultipartFile) multipartRequest.getFileMap().values().toArray()[0];
+		// 文件全名称
+		String fileName = mfile.getOriginalFilename();
+		// 文件后缀
+		String suffix = fileName.substring(fileName.lastIndexOf(".")+1);
+		String prefix=fileName.substring(0, fileName.lastIndexOf("."));
+		// 真正文件夹
+		String realFolder = basePath+now+"/";
+		// 真正文件路径
+		String realFile = realFolder+fileName;
+		prefix=getFileName(realFolder, fileName, suffix, prefix);
+		realFile=realFolder+prefix+"."+suffix;
+		// 保存文件
+		FileUtil.writeFile(mfile.getBytes(), realFile);
+		response.setContentType("text/plain;charset=utf-8");
+		//输出文件访问路径
+		response.getWriter().write(projectUrl+"/attach/viewPic?path="+now+"&name="+prefix+"."+suffix);
+	}
+	
+	private  String getFileName(String realFolder,String fileName,String suffix,String prefix){
+		File file=new File(realFolder+File.separator+prefix+"."+suffix);
+		if(file.exists()){
+			prefix+="(重)";
+			return getFileName(realFolder, fileName, suffix, prefix);
+		}else{
+			return prefix;
+		}
+	}
+	
 }

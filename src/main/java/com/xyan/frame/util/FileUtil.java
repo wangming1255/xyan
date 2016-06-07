@@ -52,6 +52,26 @@ public class FileUtil {
 	}*/
 	
 	/**
+	 * 写文件
+	 * @param content 文件内容
+	 * @param file 文件名
+	 */
+	public static void writeFile(byte[] content, String file) {
+		try {
+			File f = new File(file).getParentFile();
+			if (!f.exists()) {
+				f.mkdirs();
+			}
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(content, 0, content.length);
+			fos.flush();
+			fos.close();
+		} catch (IOException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	
+	/**
 	 *@Auhor:创建目录
 	 *@Description:(用一句话描述)
 	 *@param dir

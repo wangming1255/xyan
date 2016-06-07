@@ -32,55 +32,59 @@
 			<h5>完善文章信息</h5>
 		</div>
 		<div class="table-responsive">
-			<form id="dataForm" action="#">
-				<input type="hidden" value="" name="id">
+			<form id="dataForm" action="${path}/admin/article/save">
+				<input type="hidden" value="${model.id}" name="id">
 				<table class="table table-bordered align-center font12 mar-bottom-0 dataTable">
 					<tbody>
 						<tr>
 							<td style="width: 12%" class="text-right bold">文章标题：</td>
 							<td style="width: 21%" class="text-left pad-right-0">
 								<div class="sol-xs-12 form_date">
-									<input type="text" value="" id="title" name="title"  class="sol-xs-11 calendar J-checkInDate">
+									<input type="text" value="${model.title}" id="title" name="title"  class="sol-xs-11">
 								</div>
 							</td>
-							<td style="width: 12%" class="text-right bold">释放日期</td>
+							<td style="width: 12%" class="text-right bold">类别：</td>
 							<td style="width: 21%" class="text-left pad-right-0">
 								<div class="sol-xs-12 form_date">
-									<input type="text" value="" id="releaseDate" name="releaseDate" class="sol-xs-11 calendar J-checkInDate">
+									<input type="hidden" value="${model.typeId}" id="typeId" name="typeId">
+									<input type="text" value="${typeName}" id="typeName" name="typeName" class="sol-xs-11">
 								</div>
 							</td>
-							<td style="width: 12%" class="text-right bold">手续费</td>
+							<td style="width: 12%" class="text-right bold">标签：</td>
 							<td style="width: 21%" class="text-left pad-right-0">
 								<div class="sol-xs-11">
-									<input type="text" value="" id="handlingFee" name="handlingFee" class="sol-xs-12 text-right initNumFormat blurFormat">
+									<input type="text" value="${model.keyWord}" id="keyWord" name="keyWord" placeholder="多个标签用,隔开" class="sol-xs-12">
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td style="width: 12%" class="text-right bold">释放后放款日</td>
-							<td style="width: 21%" class="text-left pad-right-0">
+							<td style="width: 12%" class="text-right bold">图片：</td>
+							<td style="width: 21%" colspan="5" class="text-left pad-right-0">
 								<div class="sol-xs-12 form_date">
-									<input type="text" value="" name="lendingDay"  id="lendingDay" class="sol-xs-11 calendar J-checkInDate">
-								</div>
-							</td>
-							<td style="width: 12%" class="text-right bold">释放后产品计息起始日</td>
-							<td style="width: 21%" class="text-left  pad-right-0">
-								<div class="sol-xs-12 newForm_date">
-									<input type="text" value=""  name="interestStartDay" id="interestStartDay" class="sol-xs-11 calendar J-checkInDate">
-								</div>
-							</td>
-							<td style="width: 12%" class="text-right bold">释放后产品计息终止日</td>
-							<td style="width: 21%" class="text-left  pad-right-0">
-								<div class="sol-xs-12 newForm_date">
-									<input type="text" value=""  name="interestEndDay" id="interestEndDay" class="sol-xs-11 calendar J-checkInDate">
+									<input type="file" value="${model.imgUrl}" name="imgUrl"  id="imgUrl" class="sol-xs-11">
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td style="width: 12%" class="text-right bold">备注</td>
-							<td colspan="5" style="width: 21%" class="text-left pad-right-0">
-								<div class="sol-xs-11">
-									 <textarea name="remark" id="remark" class="sol-xs-12"></textarea>
+							<td style="width: 12%" class="text-right bold">介绍一：</td>
+							<td style="width: 21%" colspan="5" class="text-left pad-right-0">
+								<div class="sol-xs-12 form_date">
+									<input type="text" value="${model.produce1}" name="produce1"  id="produce1" class="sol-xs-11">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 12%" class="text-right bold">介绍二：</td>
+							<td style="width: 21%" colspan="5" class="text-left pad-right-0">
+								<div class="sol-xs-12 form_date">
+									<input type="text" value="${model.produce2}" name="produce2"  id="produce2" class="sol-xs-11">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" style="width: 21%" class="text-left pad-right-0">
+								<div class="sol-xs-11" style="margin-left:45px;">
+									 <textarea name="content" id="content" class="sol-xs-12 mar-left-5" style="height: 200px">${model.content}</textarea>
 								</div>
 							</td>
 						</tr>
@@ -88,8 +92,8 @@
 				</table>
 			</form>
 			<div class="text-center">
-				<a class="button btn-green mar15" onclick="" href="javascript:;">提交</a> 
-				<a class="button btn-grey mar15" href="${path}/admin/article">返回</a>
+				<a class="btn btn-green mar15" onclick="saveInfo()" href="javascript:;">提交</a> 
+				<a class="btn btn-grey mar15" href="${path}/admin/article">返回</a>
 			</div>
 			<!--page-content-->
 		</div>
@@ -99,9 +103,27 @@
 
 
 <!--引入jquery和wangEditor.js-->   <!--注意：javascript必须放在body最后，否则可能会出现问题-->
-<script type="text/javascript" src="${path}/static/plugin/wangEditor-2.1.12/js/wangEditor.min.js"></script>
+<script type="text/javascript" src="${path}/static/plugin/wangEditor-2.1.12/js/wangEditor.js"></script>
 <script type="text/javascript">
-    var editor = new wangEditor('remark');
-    editor.config.uploadImgUrl = '${path}/index/wangEditor/upload';
-    editor.create();
+var editor =null;
+$(function(){
+	//初始化编辑器
+	editor=new wangEditor('content');
+	editor.config.uploadImgUrl = '${path}/index/wangEditor/upload';
+	editor.create();
+	//种类
+	$("#typeName").on("click",function(){
+		$.dialogCenter({
+			id:"articleType",
+			bg:true,
+			url:"${path}/admin/article/articleType/dialog/open",
+			title:"文章类别"
+		});
+	});
+});
+
+function saveInfo(){
+	$("#dataForm").submit();
+}
 </script>
+<script type="text/javascript" src="${path}/static/js/dialog.js"></script>

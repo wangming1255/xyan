@@ -60,6 +60,8 @@
 <!--[if lte IE 8]>
 <script src="${path}/static/assets/js/excanvas.min.js"></script>
 <![endif]-->
+<script type="text/javascript" src="${path}/static/js/jqPaginator.js"></script>
+<script type="text/javascript" src="${path}/static/js/tablePage.js"></script>
 </head>
 <body>
 <div class="navbar navbar-default" id="navbar">

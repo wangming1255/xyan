@@ -9,4 +9,3 @@
 <script type="text/javascript">
 var path='${path}';
 </script>
-<script type="text/javascript" src="${path}/static/js/tablePage.js"></script>

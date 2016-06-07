@@ -1,4 +1,15 @@
+html, body, ol, ul, li, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select {
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+}
+html {font-size: 12px;line-height: 2em;overflow-x: hidden;}
+img {border: 0 none;cursor: default;}
+ul, li {list-style: outside none none;}
+p { word-wrap: break-word;}
 a{text-decoration: none;}
+.left {float: left;}
+.right {float: right;}
 .float-r{float:right};
 .relative {position: relative;}
 .absolute {position: absolute;}
@@ -154,6 +165,66 @@ background: -o-linear-gradient(top, #fdfdfd, #f3f3f3);  /*Opera 11.10+*/}
 .pad-lr-20{padding-left:20px !important;padding-right:20px !important;}
 .pad-lr-25{padding-left:25px !important;padding-right:25px !important;}
 .button{ font-size: 12px; padding: 7px 12px 8px 12px; text-transform: uppercase; white-space: nowrap;cursor: pointer;line-height: 12px; display: inline-block; max-height: 29px;}
+
+.pagination {
+    margin: 5px 10px 0;
+}
+.pagination ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.pagination ul li {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #d5d5d5;
+    color: #595959;
+    cursor: pointer;
+    float: left;
+    font-size: 12px;
+    margin-right: 5px;
+    min-width: 20px;
+    padding: 2px 5px;
+    text-align: center;
+}
+.pagination ul li.disabled {
+    cursor: no-drop;
+    opacity: 0.55;
+}
+.pagination ul li.active, .ui-toolbar .pagination ul li:hover {
+    opacity: 0.55;
+}
+.pagination .pagination-text {
+    color: #898586;
+    float: left;
+    font-size: 12px;
+    line-height: 28px;
+    margin-left: 10px;
+}
+.pagination .selector {
+    height: 23px;
+    margin: 0;
+    padding-right: 20px;
+    width: 55px;
+}
+.pagination .selector .selector-txt {
+    font-size: 12px;
+    line-height: 24px;
+    margin-left: 0;
+}
+.pagination .selector .iconfont {
+    border-left: 1px solid #ddd;
+    color: #8c8c8c;
+    font-size: 12px;
+    line-height: 22px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 20px;
+}
+.pagination .selector .form-control {
+    height: 23px;
+    padding: 0 12px;
+}
 /*弹出框的样式*/
 .D-ialog{position:absolute; border:solid 8px #c9e2f9; background:#fff; padding:15px 20px;z-index:999;}
 .D-ialog .dialogClose{background-image: url("../../images/dialog_closebtn_over.gif");}

@@ -6480,17 +6480,18 @@ _e(function (E, $) {
 
                 // 将结果插入编辑器
                 img = document.createElement('img');
-                img.onload = function () {
+                //img.onload = function () {
                     var html = '<img src="' + resultText + '" alt="' + originalName + '" style="max-width:100%;"/>';
                     editor.command(null, 'insertHtml', html);
 
                     E.log('已插入图片，地址 ' + resultText);
-                    img = null;
-                };
-                img.onerror = function () {
+                 //   img = null;
+                //};
+                /*img.onerror = function (e) {
+                	console.log(e);
                     E.error('使用返回的结果获取图片，发生错误。请确认以下结果是否正确：' + resultText);
                     img = null;
-                };
+                };*/
                 img.src = resultText;
             }
 

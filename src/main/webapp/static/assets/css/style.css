@@ -229,6 +229,6 @@ background: -o-linear-gradient(top, #fdfdfd, #f3f3f3);  /*Opera 11.10+*/}
 .D-ialog{position:absolute; border:solid 8px #c9e2f9; background:#fff; padding:15px 20px;z-index:999;}
 .D-ialog .dialogClose{background-image: url("../../images/dialog_closebtn_over.gif");}
 .D-title{ border-bottom:solid 1px #e6ecf2; height:24px; padding-bottom:10px; margin-bottom:10px; position:relative;}
-.D-title h3{font-size:14px;}
+.D-title h3{font-size:14px;text-align: center;}
 .D-title span{ width:15px; height:15px; display:block; background-position:-142px -58px; cursor:pointer; position: absolute; right:0px; top:5px;}
 #D-content-loading{text-align:right;background-repeat:no-repeat; background-size:33px 30px; width:100%;height:64px;background-image: url("images/loading.gif");background-position:50% 50%; }

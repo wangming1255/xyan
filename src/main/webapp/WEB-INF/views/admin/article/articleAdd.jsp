@@ -32,7 +32,7 @@
 			<h5>完善文章信息</h5>
 		</div>
 		<div class="table-responsive">
-			<form id="dataForm" action="${path}/admin/article/save" method="POST" enctype="multipart/form-data">
+			<form id="dataForm" action="${path}/admin/article/save" method="POST">
 				<input type="hidden" value="${model.id}" name="id">
 				<table class="table table-bordered align-center font12 mar-bottom-0 dataTable">
 					<tbody>
@@ -61,7 +61,8 @@
 							<td style="width: 12%" class="text-right bold">图片：</td>
 							<td style="width: 21%" colspan="5" class="text-left pad-right-0">
 								<div class="sol-xs-12 form_date">
-									<input type="file" value="${model.imgUrl}" name="imgUrl"  id="imgUrl" class="sol-xs-11">
+									<input type="text" value="${model.imgUrl}" name="imgUrl"  id="imgUrl" class="sol-xs-3 mar20">
+									<a class="btn btn-green mar15" onclick="show()" href="javascript:;">预览</a> 
 								</div>
 							</td>
 						</tr>
@@ -116,7 +117,7 @@ $(function(){
 		$.dialogCenter({
 			id:"articleType",
 			bg:true,
-			url:"${path}/admin/article/articleType/dialog/open",
+			url:"${path}/admin/article/dialog/open",
 			title:"文章类别"
 		});
 	});
@@ -124,6 +125,17 @@ $(function(){
 
 function saveInfo(){
 	$("#dataForm").submit();
+}
+
+function show(){
+	$.dialogCenter({
+		id:"showImg",
+		bg:true,
+		methodType:"POST",
+		data:{"url":$("#imgUrl").val()},
+		url:"${path}/admin/article/dialog/img",
+		title:"文章图片预览"
+	});		
 }
 </script>
 <script type="text/javascript" src="${path}/static/js/dialog.js"></script>

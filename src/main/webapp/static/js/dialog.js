@@ -5,6 +5,11 @@
 			$("#Dialogbg").remove();
 		},
 		dialogCenter : function(options) {// 弹出框居中
+			var defaults={
+				drag:true,
+				methodType:"GET"
+			};
+			options = $.extend(defaults, options);//加载配置
 			var id = options.id||("dialog"+Math.random()), $self, $drag;
 			var C = {
 				init : function() {
@@ -23,6 +28,7 @@
 						$.ajax({
 								url : options.url,
 								dataType : "text",
+								type:options.methodType,
 								data : options.data,
 								complete : function(request, status) {
 									
@@ -99,43 +105,39 @@
 							'mouseup' : C.mouseUpDrag,
 							'selectstart' : C.selectStartDrag,
 							'selectable' : 'on'
-						});
-					},
-					mouseMoveDrag : function(e) {
-						var moveX = e.pageX;// 滑块按下去时鼠标X轴位置
-						var moveY = e.pageY;// 滑块按下去时鼠标X轴位
-						var left = C.left + moveX - C.startX;
-						var top = C.top + moveY - C.startY;
-						left = Math.min(C.maxW, Math.max(0, left));
-						top = Math.max(0, top);
-						if (C.style == 'fixed') {
-							top = Math.min(C.maxY, top);
-						}
-						$self.css({
-							'left' : left,
-							'top' : top
-						});
-					},
-					mouseUpDrag : function() {
-						$('body').css({
-							'-moz-user-select' : 'text',
-							'-o-user-select' : 'text',
-							'user-select' : 'text'
-						});
-						$(document)
-								.bind('selectable', 'off')
-								.unbind(
-										{
-											'mousemove' : C.mouseMoveDrag,// 撤销移动FUN
-											'selectstart' : C.selectStartDrag
-										// 撤销被选中FUN
-										});
-					},
-					selectStartDrag : function() {
-						return false;
+					});
+				},
+				mouseMoveDrag : function(e) {
+					var moveX = e.pageX;// 滑块按下去时鼠标X轴位置
+					var moveY = e.pageY;// 滑块按下去时鼠标X轴位
+					var left = C.left + moveX - C.startX;
+					var top = C.top + moveY - C.startY;
+					left = Math.min(C.maxW, Math.max(0, left));
+					top = Math.max(0, top);
+					if (C.style == 'fixed') {
+						top = Math.min(C.maxY, top);
 					}
-				};
-				C.init();
-			}
-		});
+					$self.css({
+						'left' : left,
+						'top' : top
+					});
+				},
+				mouseUpDrag : function() {
+					$('body').css({
+						'-moz-user-select' : 'text',
+						'-o-user-select' : 'text',
+						'user-select' : 'text'
+					});
+					$(document).bind('selectable', 'off').unbind({
+										'mousemove' : C.mouseMoveDrag,// 撤销移动FUN
+										'selectstart' : C.selectStartDrag// 撤销被选中FUN
+								});
+				},
+				selectStartDrag : function() {
+					return false;
+				}
+			};
+			C.init();
+		}
+	});
 })(jQuery);

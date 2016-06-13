@@ -8,11 +8,13 @@
 	<sql id="mapSQL">
 		ID as "id"
 		, LOG_DATE as "logDate"
+		, LOG_TYPE as "logType"
 		, CONTENT as "content"
 	</sql>
 
 	<sql id="objectSQL">
 		ID as "id"
+		, LOG_TYPE as "logType"
 		, LOG_DATE as "logDate"
 		, CONTENT as "content"
 	</sql>
@@ -32,9 +34,10 @@
 		<include refid="objectSQL" />
 		FROM xy_log
 		<where>
-			<if test="id!=null">AND ID = #{id}</if>
-			<if test="logDate!=null">AND LOG_DATE = #{logDate}</if>
-			<if test="content!=null">AND CONTENT = #{content}</if>
+			<if test="id !=null">AND ID = #{id}</if>
+			<if test="logDate !=null">AND LOG_DATE = #{logDate}</if>
+			<if test="logType !=null">AND LOG_TYPE = #{logType}</if>
+			<if test="content !=null">AND CONTENT = #{content}</if>
 		</where>
 	</select>
 
@@ -44,9 +47,10 @@
 		<include refid="mapSQL" />
 		FROM xy_log
 		<where>
-			<if test="id!=null">AND ID = #{id}</if>
-			<if test="logDate!=null">AND LOG_DATE = #{logDate}</if>
-			<if test="content!=null">AND CONTENT = #{content}</if>
+			<if test="id !=null">AND ID = #{id}</if>
+			<if test="logDate !=null">AND LOG_DATE = #{logDate}</if>
+			<if test="logType !=null">AND LOG_TYPE = #{logType}</if>
+			<if test="content !=null">AND CONTENT = #{content}</if>
 		</where>
 	</select>
 
@@ -63,11 +67,13 @@
 
 			<if test="id != null">ID,</if>
 			<if test="logDate != null">LOG_DATE,</if>
+			<if test="logType != null">LOG_TYPE,</if>
 			<if test="content != null">CONTENT,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">#{id},</if>
 			<if test="logDate != null">#{logDate},</if>
+			<if test="logType != null">#{logType},</if>
 			<if test="content != null">#{content},</if>
 		</trim>
 	</insert>
@@ -77,6 +83,7 @@
 		<set>
 			<if test="id != null">ID = #{id},</if>
 			<if test="logDate != null">LOG_DATE = #{logDate},</if>
+			<if test="logType != null">LOG_TYPE = #{logType},</if>
 			<if test="content != null">CONTENT = #{content},</if>
 		</set>
 		WHERE ID=#{id}
@@ -93,35 +100,36 @@
 		</foreach>
 	</delete>
 
-	<!--生成器生成代码，需要自己手动修改java属性名 -->
 	<insert id="insertModels" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index" open="begin"
 			close=";end;" separator=";">
 			INSERT INTO xy_log
 			<trim prefix="(" suffix=")" suffixOverrides=",">
-				<if test="id != null">ID,</if>
-				<if test="logDate != null">LOG_DATE,</if>
-				<if test="content != null">CONTENT,</if>
+				<if test="item.id != null">ID,</if>
+				<if test="item.logDate != null">LOG_DATE,</if>
+				<if test="item.logType != null">LOG_TYPE,</if>
+				<if test="item.content != null">CONTENT,</if>
 			</trim>
 			<trim prefix="values (" suffix=")" suffixOverrides=",">
-				<if test="id != null">#{id},</if>
-				<if test="logDate != null">#{logDate},</if>
-				<if test="content != null">#{content},</if>
+				<if test="item.id != null">#{item.id},</if>
+				<if test="item.logDate != null">#{item.logDate},</if>
+				<if test="item.logType != null">#{item.logType},</if>
+				<if test="item.content != null">#{item.content},</if>
 			</trim>
 		</foreach>
 	</insert>
 
-	<!--生成器生成代码，需要自己手动修改java属性名 -->
 	<update id="updateModels" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index" open="begin"
 			close=";end;" separator=";">
 			UPDATE xy_log
 			<set>
-				<if test="id != null">ID = #{id},</if>
-				<if test="logDate != null">LOG_DATE = #{logDate},</if>
-				<if test="content != null">CONTENT = #{content},</if>
+				<if test="item.id != null">ID = #{item.id},</if>
+				<if test="item.logDate != null">LOG_DATE = #{item.logDate},</if>
+				<if test="item.logType != null">LOG_TYPE = #{item.logType},</if>
+				<if test="item.content != null">CONTENT = #{item.content},</if>
 			</set>
-			WHERE ID=#{id}
+			WHERE ID=#{item.id}
 		</foreach>
 	</update>
 

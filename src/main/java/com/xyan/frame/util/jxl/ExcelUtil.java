@@ -1,17 +1,15 @@
 package com.xyan.frame.util.jxl;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
+
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelUtil {
 
@@ -19,11 +17,11 @@ public class ExcelUtil {
 	 * @param rowStart
 	 * @param colStart
 	 * @param sheetNum
-	 * @param ctxPath
+	 * @param ctxPath 临时文件存放路径
 	 * @param mf
 	 * @return
 	 */
-	public static List<String[]> getDataFromXls(int rowStart,int colStart,int sheetNum,String ctxPath, MultipartFile mf){
+	public static List<String[]> getData(int rowStart,int colStart,int sheetNum,String ctxPath, MultipartFile mf){
 		List<String[]> list = new ArrayList<String[]>();
 		Workbook workbook = null;
 		File uploadFile=null;

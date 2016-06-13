@@ -1,13 +1,21 @@
 package com.xyan.frame.feature.web.interceptors;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xyan.common.enums.LogType;
+import com.xyan.frame.feature.log.model.LogModel;
+import com.xyan.frame.feature.log.service.LogService;
+import com.xyan.frame.util.ApplicationUtils;
 import com.xyan.frame.util.DateUtil;
+import com.xyan.frame.util.PropertiesUtil;
   
 /**
  * @Description:访问监控
@@ -15,8 +23,15 @@ import com.xyan.frame.util.DateUtil;
  */
 public class LogInterceptor implements HandlerInterceptor {  
 	
+	private static boolean log=false;
+	static{
+		log=PropertiesUtil.getProperties("logOpen").equals("1");
+	}
+	
 	Logger logger=Logger.getLogger(LogInterceptor.class);
   
+	 @Autowired
+	 private LogService logService;
 	 
     /** 
      * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，SpringMVC中的Interceptor拦截器是链式的，可以同时存在 
@@ -28,7 +43,14 @@ public class LogInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,  
             HttpServletResponse response, Object handler) throws Exception {
     	logger.info(DateUtil.getNowDate(DateUtil.DATE_FORMAT_LONG_ZH)+"\t当前访问的URI:  "+request.getRequestURI());
-        return true;  
+    	if(log){
+    		LogModel logModel=new LogModel();
+    		logModel.setLogDate(new Date());
+    		logModel.setLogType(LogType.LOG_VISIT.toString());
+    		logModel.setContent(ApplicationUtils.getIpAddr(request)+"【访问】"+request.getRequestURI());
+    		logService.insert(logModel);
+    	}
+    	return true;  
     }  
       
     /** 

@@ -11,6 +11,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -105,8 +106,8 @@ public class ArticleController {
 	}
 	
 	/**进入查看*/
-	@RequestMapping(value="view", method = RequestMethod.GET)
-	public ModelAndView toView(Long id){
+	@RequestMapping(value="view/{id}", method = RequestMethod.GET)
+	public ModelAndView toView(@PathVariable Long id){
 		ArticleModel entity=articleService.selectByPrimaryKey(id);
 		if(entity==null){
 			throw new NullPointerException("没有找到指定的文章（博客）");

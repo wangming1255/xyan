@@ -2,8 +2,8 @@ package com.xyan.frame.feature.web.exception;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.sql.SQLException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.codehaus.jackson.map.JsonMappingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
+import com.xyan.common.enums.LogType;
 import com.xyan.frame.base.web.ResponseModel;
+import com.xyan.frame.feature.log.model.LogModel;
+import com.xyan.frame.feature.log.service.LogService;
+import com.xyan.frame.util.PropertiesUtil;
 
 /**
  * 不必在Controller中对异常进行处理，抛出即可，由此异常解析器统一控制。<br>
@@ -38,9 +41,16 @@ import com.xyan.frame.base.web.ResponseModel;
  * Controller中需要有专门处理异常的方法。
  */
 public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerExceptionResolver {
-
+	private static boolean log=false;
+	static{
+		log=PropertiesUtil.getProperties("logOpen").equals("1");
+	}
+	
     private String defaultErrorView;
-
+    
+    @Autowired
+	private LogService logService;
+    
     public String getDefaultErrorView() {
         return defaultErrorView;
     }
@@ -50,6 +60,13 @@ public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerEx
     }
 
     protected ModelAndView doResolveHandlerMethodException(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod, Exception exception) {
+    	if(log){
+    		LogModel logModel=new LogModel();
+    		logModel.setLogDate(new Date());
+    		logModel.setLogType(LogType.LOG_EXCEPTION.toString());
+    		logModel.setContent("【异常】"+exception.getMessage());
+    		logService.insert(logModel);
+    	}
         if (handlerMethod == null) {
             return null;
         }

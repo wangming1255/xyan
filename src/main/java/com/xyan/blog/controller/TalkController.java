@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/blog/talk")
 public class TalkController {
 	
+	@RequestMapping
 	public String index(){
 		return "blog/talk/talk";
 	}

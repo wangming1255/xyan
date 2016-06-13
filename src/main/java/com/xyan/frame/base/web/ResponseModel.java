@@ -8,7 +8,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.xyan.frame.base.model.BaseModel;
 
-public class ResponseModel<model extends BaseModel>{
+public class ResponseModel{
 	/**消息*/
 	private String message;
 	/**返回的状态码*/
@@ -30,7 +30,8 @@ public class ResponseModel<model extends BaseModel>{
 	/**数据*/
 	private BaseModel modelData;
 	/**集合数据*/
-	private List<model> listData;
+	@SuppressWarnings("rawtypes")
+	private List listData;
 	
 	
 	public ResponseModel() {
@@ -50,7 +51,7 @@ public class ResponseModel<model extends BaseModel>{
 		return timestamp;
 	}
 
-	public ResponseModel<model> setTimestamp(long timestamp) {
+	public ResponseModel setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}
@@ -59,7 +60,7 @@ public class ResponseModel<model extends BaseModel>{
 		return returnCode;
 	}
 
-	public ResponseModel<model> setReturnCode(String returnCode) {
+	public ResponseModel setReturnCode(String returnCode) {
 		this.returnCode = returnCode;
 		return this;
 	}
@@ -68,7 +69,7 @@ public class ResponseModel<model extends BaseModel>{
 		return message;
 	}
 
-	public ResponseModel<model> setMessage(String message) {
+	public ResponseModel setMessage(String message) {
 		this.message = message;
 		return this;
 	}
@@ -77,7 +78,7 @@ public class ResponseModel<model extends BaseModel>{
 		return str1;
 	}
 
-	public ResponseModel<model> setStr1(String str1) {
+	public ResponseModel setStr1(String str1) {
 		this.str1 = str1;
 		return this;
 	}
@@ -86,7 +87,7 @@ public class ResponseModel<model extends BaseModel>{
 		return str2;
 	}
 
-	public ResponseModel<model> setStr2(String str2) {
+	public ResponseModel setStr2(String str2) {
 		this.str2 = str2;
 		return this;
 	}
@@ -95,7 +96,7 @@ public class ResponseModel<model extends BaseModel>{
 		return long1;
 	}
 
-	public ResponseModel<model> setLong1(Long long1) {
+	public ResponseModel setLong1(Long long1) {
 		this.long1 = long1;
 		return this;
 	}
@@ -104,7 +105,7 @@ public class ResponseModel<model extends BaseModel>{
 		return long2;
 	}
 
-	public ResponseModel<model> setLong2(Long long2) {
+	public ResponseModel setLong2(Long long2) {
 		this.long2 = long2;
 		return this;
 	}
@@ -113,7 +114,7 @@ public class ResponseModel<model extends BaseModel>{
 		return success;
 	}
 
-	public ResponseModel<model> setSuccess(boolean success) {
+	public ResponseModel setSuccess(boolean success) {
 		this.success = success;
 		return this;
 	}
@@ -123,7 +124,7 @@ public class ResponseModel<model extends BaseModel>{
 		return login;
 	}
 
-	public ResponseModel<model> setLogin(boolean login) {
+	public ResponseModel setLogin(boolean login) {
 		this.login = login;
 		return this;
 	}
@@ -133,14 +134,15 @@ public class ResponseModel<model extends BaseModel>{
 	public void setModelData(BaseModel modelData) {
 		this.modelData = modelData;
 	}
-	public List<model> getListData() {
+	@SuppressWarnings("rawtypes")
+	public List getListData() {
 		return listData;
 	}
-	public void setListData(List<model> listData) {
+	@SuppressWarnings("rawtypes")
+	public void setListData(List listData) {
 		this.listData = listData;
 	}
 	
-	@SuppressWarnings("rawtypes")
 	public static ResponseModel from(Exception e){
 		ResponseModel response=new ResponseModel();
 		response.setSuccess(false);

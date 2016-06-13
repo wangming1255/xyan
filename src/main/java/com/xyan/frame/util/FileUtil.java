@@ -9,23 +9,15 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import net.sf.jmimemagic.Magic;
-import net.sf.jmimemagic.MagicMatch;
-
 /**文件工具类*/
 public class FileUtil {
 
 	
-	/**获取文件的mime类型*/
-	public static String getMimeType(String file) throws Exception{
-		MagicMatch match = Magic.getMagicMatch(new File(file), true);
-		return match.getMimeType();
-	}
 	
 	public static  String getFileName(String realFolder,String fileName,String suffix,String prefix){
 		File file=new File(realFolder+File.separator+prefix+"."+suffix);
 		if(file.exists()){
-			prefix+="(重)";
+			prefix+="(1)";
 			return getFileName(realFolder, fileName, suffix, prefix);
 		}else{
 			return prefix;

@@ -3,7 +3,10 @@ package com.xyan.admin.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -28,6 +31,8 @@ import com.xyan.frame.feature.web.MediaTypes;
 @Controller
 @RequestMapping("/admin/article")
 public class AdminArticleController {
+	
+	private Logger logger=Logger.getLogger(AdminArticleController.class);
 	
 	@Autowired
 	private ArticleService articleService;
@@ -60,13 +65,27 @@ public class AdminArticleController {
 		return "/admin/article/articleAdd";
 	}
 	
+	@RequestMapping(value="edit",method=RequestMethod.GET)
+	public ModelAndView toEdit(Long id){
+		ArticleModel model=articleService.selectByPrimaryKey(id);
+		ArticleTypeModel typeModel=articleTypeService.selectByPrimaryKey(model.getTypeId());
+		return new ModelAndView("/admin/article/articleAdd")
+			.addObject("typeName", typeModel!=null?typeModel.getName():"")
+			.addObject("model", model);
+	}
+	
 	/**
 	 * 文章类别
 	 * @return
 	 */
-	@RequestMapping(value="articleType/dialog/open",method=RequestMethod.GET)
+	@RequestMapping(value="dialog/open",method=RequestMethod.GET)
 	public String dialog(){
 		return "/admin/article/articleType";
+	}
+	
+	@RequestMapping(value="dialog/img",method=RequestMethod.POST)
+	public ModelAndView img(String url){
+		return new ModelAndView("/admin/article/articleImg").addObject("url", url);
 	}
 	
 	/**
@@ -75,8 +94,8 @@ public class AdminArticleController {
 	 * @param attributes
 	 * @return
 	 */
-	@RequestMapping(value="save",method=RequestMethod.GET)
-	public String save(ArticleModel articleModel,RedirectAttributes attributes){
+	@RequestMapping(value="save",method=RequestMethod.POST)
+	public String save(ArticleModel articleModel,HttpServletRequest request,RedirectAttributes attributes){
 		if(articleModel.getId()==null){
 			articleService.insert(articleModel);
 		}else{

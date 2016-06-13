@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.base.service.impl.GenericServiceImpl;
+import com.xyan.frame.base.web.ResponseModel;
 import com.xyan.frame.security.dao.UserDao;
 import com.xyan.frame.security.model.UserModel;
 import com.xyan.frame.security.service.UserService;
@@ -31,6 +32,11 @@ public class UserServiceImpl extends GenericServiceImpl<UserModel, Long> impleme
 			return null;
 		}
 		return list.get(0);
+	}
+
+	@Override
+	public ResponseModel login(UserModel user) {
+		return null;
 	}
 
 }

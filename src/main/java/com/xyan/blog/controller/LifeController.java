@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/blog/life")
 public class LifeController {
 	
+	@RequestMapping
 	public String index(){
 		return "blog/life/life";
 	}

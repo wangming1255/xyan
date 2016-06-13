@@ -1,10 +1,6 @@
 package com.xyan.common.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,7 +85,7 @@ public class IndexController {
 		String realFolder = basePath+now+"/";
 		// 真正文件路径
 		String realFile = realFolder+fileName;
-		prefix=getFileName(realFolder, fileName, suffix, prefix);
+		prefix=FileUtil.getFileName(realFolder, fileName, suffix, prefix);
 		realFile=realFolder+prefix+"."+suffix;
 		// 保存文件
 		FileUtil.writeFile(mfile.getBytes(), realFile);
@@ -99,14 +94,6 @@ public class IndexController {
 		response.getWriter().write(projectUrl+"/attach/viewPic?path="+now+"&name="+prefix+"."+suffix);
 	}
 	
-	private  String getFileName(String realFolder,String fileName,String suffix,String prefix){
-		File file=new File(realFolder+File.separator+prefix+"."+suffix);
-		if(file.exists()){
-			prefix+="(重)";
-			return getFileName(realFolder, fileName, suffix, prefix);
-		}else{
-			return prefix;
-		}
-	}
+	
 	
 }

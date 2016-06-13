@@ -2,7 +2,6 @@ package com.xyan.frame.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,33 +22,16 @@ public class FileUtil {
 		return match.getMimeType();
 	}
 	
-	public static void main(String[] args) {
-		createDir("d:\\tmp\\mp3");
+	public static  String getFileName(String realFolder,String fileName,String suffix,String prefix){
+		File file=new File(realFolder+File.separator+prefix+"."+suffix);
+		if(file.exists()){
+			prefix+="(重)";
+			return getFileName(realFolder, fileName, suffix, prefix);
+		}else{
+			return prefix;
+		}
 	}
 	
-	/*public static void read(String file) {
-		FileInputStream is = null;
-		try {
-			File f = new File(file);
-			is = new FileInputStream(f);
-
-			ContentHandler contenthandler = new BodyContentHandler();
-			Metadata metadata = new Metadata();
-			metadata.set(Metadata.RESOURCE_NAME_KEY, f.getName());
-			Parser parser = new AutoDetectParser();
-			ParseContext context = new ParseContext();
-			parser.parse(is, contenthandler, metadata, context);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (is != null)
-				try {
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		}
-	}*/
 	
 	/**
 	 * 写文件

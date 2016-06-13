@@ -32,7 +32,7 @@
 			<h5>完善文章信息</h5>
 		</div>
 		<div class="table-responsive">
-			<form id="dataForm" action="${path}/admin/article/save">
+			<form id="dataForm" action="${path}/admin/article/save" method="POST" enctype="multipart/form-data">
 				<input type="hidden" value="${model.id}" name="id">
 				<table class="table table-bordered align-center font12 mar-bottom-0 dataTable">
 					<tbody>

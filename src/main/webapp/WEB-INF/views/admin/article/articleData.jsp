@@ -9,7 +9,7 @@
 		<td class="text-center getDictValue" style="width: 7%;" >${data.userId}</td> 
 		<td class="text-center"> 
 			<a href="${path}/admin/article/edit?id=${data.id}" class="table-panle" title="修改">编辑</a>
-			<a href="${path}/invest/portfolioAdjust/refuse?id=${data.id}" class="table-panle" title="拒绝 ">查看</a>
+			<a href="${path}/blog/article/view/${data.id}" target="_blank" class="table-panle" title="拒绝 ">查看</a>
 		</td> 
 	</tr>
 </c:forEach>

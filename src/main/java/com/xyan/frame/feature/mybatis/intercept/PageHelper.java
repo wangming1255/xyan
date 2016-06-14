@@ -54,7 +54,6 @@ public class PageHelper implements Interceptor {
      * @param pageSize
      */
     public static void startPage(int pageNum, int pageSize) {
-    	logger.info("开始分页："+pageNum+"\t"+pageSize);
         localPage.set(new Page(pageNum, pageSize));
     }
 
@@ -65,7 +64,6 @@ public class PageHelper implements Interceptor {
     public static Page endPage() {
         Page page = localPage.get();
         localPage.remove();
-        logger.info("结束分页："+page);
         return page;
     }
 

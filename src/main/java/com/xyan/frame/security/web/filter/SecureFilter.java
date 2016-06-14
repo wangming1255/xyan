@@ -37,7 +37,7 @@ public class SecureFilter implements Filter {
 		/*
 		 * 1、拿到请求中的user
 		 */
-		String LOGIN_KEY=PropertiesUtil.getProperties("LOGIN_KEY");
+		String LOGIN_KEY=PropertiesUtil.getProperties("LOGIN_USER");
 		HttpServletRequest req=(HttpServletRequest) request;
 		UserModel user=(UserModel) req.getSession().getAttribute(LOGIN_KEY);
 		

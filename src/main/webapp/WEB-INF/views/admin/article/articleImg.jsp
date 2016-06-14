@@ -15,6 +15,13 @@
 	</form>
 </div>
 <script type="text/javascript">
+$("#preview").onload=function(){
+	var height=$(window).height();
+	var width=$(window).width();
+	var h=$("#showImg").height();
+	var w=$("#showImg").width();
+	$("#showImg").css({"left":(width-w)/2,top:(height-h)/2});
+};
 	function upload(){
 		var formData = new FormData();
 		formData.append('file', $('#toSelect')[0].files[0]);
@@ -80,7 +87,7 @@
      reader.onload = function(e){
          var pic = document.getElementById("preview");
          pic.src=this.result;
-         var height=$(window).height();
+        var height=$(window).height();
 		var width=$(window).width();
 		var h=$("#showImg").height();
 		var w=$("#showImg").width();

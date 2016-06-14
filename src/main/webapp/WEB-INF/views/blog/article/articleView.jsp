@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <title>${model.title}</title>
 <div class="content">
 	<div class="page-header">
@@ -16,6 +17,17 @@
 			<span>评论(${model.commentCount})</span>
 		</p>
 		<br>
+	</div>
+	<div>
+		${model.produce1}
+	</div>
+	<c:if test="${not empty model.imgUrl}">
+		<div>
+			<img src="${model.imgUrl}">
+		</div>
+	</c:if>
+	<div>
+		${model.produce2}
 	</div>
 	<div>
 		${model.content }

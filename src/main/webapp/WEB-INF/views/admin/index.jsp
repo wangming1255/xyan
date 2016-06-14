@@ -1,5 +1,33 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <title>后台管理首页</title>
+<div class="breadcrumbs" id="breadcrumbs">
+	<script type="text/javascript">
+		try {
+			ace.settings.check('breadcrumbs', 'fixed')
+		} catch (e) {
+		}
+	</script>
+
+	<ul class="breadcrumb">
+		<li><i class="icon-home home-icon"></i> <a
+			href="${path}/admin/index">首页</a></li>
+		<li class="active">控制台</li>
+	</ul>
+	<!-- .breadcrumb -->
+
+	<div class="nav-search" id="nav-search">
+		<form class="form-search">
+			<span class="input-icon"> <input type="text"
+				placeholder="Search ..." class="nav-search-input"
+				id="nav-search-input" autocomplete="off" /> <i
+				class="icon-search nav-search-icon"></i>
+			</span>
+		</form>
+	</div>
+	<!-- #nav-search -->
+</div>
+<div class="page-content">
+
 <div class="page-header">
 	<h1>
 		控制台 <small> <i class="icon-double-angle-right"></i> 查看
@@ -1040,6 +1068,8 @@
 	<!-- /.col -->
 </div>
 <!-- /.row -->
+</div>
+
 <script type="text/javascript">
 	jQuery(function($) {
 		$('.easy-pie-chart.percentage')

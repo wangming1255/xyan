@@ -3,7 +3,7 @@ package com.xyan.admin.model;
 import com.xyan.frame.base.model.BaseModel;
 
 /**
- * @Description: 实体类 xy_mail
+ * @Description: 邮件实体类 xy_mail
  * @Author：wangming
  * @email：w18855525068@163.com
  * @Date:2016-06-14 11:02:12

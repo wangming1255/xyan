@@ -44,7 +44,7 @@
 </li>
 </ul>	
 
-1、开发一个自定义标签，用于完成类似shiro:hashPermission功能
+1、开发一个自定义标签，用于完成类似shiro:hashPermission功能<br>
 2、权限的授权操作
 
 	

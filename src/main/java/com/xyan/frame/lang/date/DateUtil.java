@@ -1,4 +1,4 @@
-package com.zb.util;
+package com.xyan.frame.lang.date;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -13,21 +13,14 @@ header h1 a{color:#000;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; 
 header h1 a:hover{ padding-left:20px}
 header p{margin:17px 0 0 0;text-shadow:#000 1px 1px 1px;color:#fff}
 .navswf{ position:relative; width:1000px; margin:auto}
-#nav{
-	width: 873px;
-	line-height: 40px;
-	height: 40px;
-	margin: auto;
-	position: absolute;
-	left: 62px;
-	top: 30px;
-}/* nav圆角背景 rgba 透明度0.2 */
+#nav{width: 873px;line-height: 40px;height: 40px;margin: auto;position: absolute;left: 62px;top: 30px;}
+/* nav圆角背景 rgba 透明度0.2 */
 #nav ul{ list-style:none; margin:auto; width:1030px}
 #nav ul li{ float:left; width:80px; text-align:center;text-shadow:#333 1px 1px 1px}
 #nav ul li a{ display:block; color:#FFF; }/* 背景颜色过渡效果 */
 #nav ul li a:hover{  color: #FFF; font-weight:bold;}
 #nav ul li a#nav_current {color: #FFF; font-weight:bold; border-radius:50px 0} /* nav高亮显示背景颜色 */
-.content{ width:745px; float:left; }/* left form */
+.content{ width:745px; float:left;overflow: hidden;}/* left form */
 /* bloglist index */
 .bloglist{ width:99%; margin:20px 5px 20px 5px;clear:both; overflow:hidden; }
 .bloglist h2{ background: url(../images/index/blogbgs.png) no-repeat right; line-height:29px; height:29px; font-size:14px; color:#3b3b3b; padding:10px 0 10px 20px;}

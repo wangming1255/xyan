@@ -1,39 +1,41 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<table class="table table-bordered align-center font12 mar-bottom-0 dataTable" id="dataTable">
-	<tbody id="tbody">
-	</tbody>
-</table>
-<!-- 分页 start  -->
-<div class="page-header-search">
-	<table
-		class="table table-bordered align-text-center font12 mar-bottom-0 dataTable">
-		<tbody>
-			<tr class="ui-toolbar">
-				<td colspan="10">
-					<div class="pagination right">
-						<span class="pagination-text">每页显示：</span>
-						<div class="selector align-left">
-							<span class="selector-txt">10</span> <i class="iconfont"></i> <select
-								class="form-control selSpan" id="pageSizeId" style="opacity: 0;">
-								<option value="10" selected="selected">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-							</select>
-						</div>
-					</div>
-					<div id="pagination"
-						data-url="${path}/blog/board/pageData"
-						class="pagination right"></div>
-					<div class="clear"></div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="content">
+	<div class="mar15">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="mar15">
+		<div class="box">
+			<div class="box-header">
+				博主你好：
+			</div>
+			<div class="box-body">
+				<div class="">我有一个问题请教wqeeeeeeee十多个是代理公司的怪兽电力公司的个好老师的更合适的两个函数的两个还是领导尽快赶回是德国华盛顿国会山来的后果 时都会感受到了规划落实贷款eeee,qweqw qwe qwhhsgdjghsdkgh slhdglk shd g hsdklgsdag你</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="box-header">
+				博主你好：
+			</div>
+			<div class="box-body">
+				<div class="">我有一个问题请教你</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="box-header">
+				博主你好：
+			</div>
+			<div class="box-body">
+				<div class="">我有11111111111111111111111111111111111111111111111111111111111111111</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="box-header">
+				博主你好：
+			</div>
+			<div class="box-body">
+				<div class="">xxxxxxxxxxxxxxxxxx</div>
+			</div>
+		</div>
+	</div>
 </div>
-<script type="text/javascript">
-	$().ready(function() {
-		//HTML分页
-		$.MyPage.initHTML();
-	});
-</script>

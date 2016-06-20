@@ -1,5 +1,7 @@
 package com.xyan.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +48,19 @@ public class ResourceController {
 		responseModel.setSuccess(true);
 		responseModel.setLogin(true);
 		return responseModel;
+	}
+	
+	@RequestMapping(value="treeData",method=RequestMethod.POST,produces=MediaTypes.JSON_UTF_8)
+	@ResponseBody
+	public List<ResourceModel> treeData(ResourceModel model){
+		if(model.getpId()==null&&model.getId()==null){
+			model.setpId(-1L);
+		}else{
+			model.setpId(model.getId());
+			model.setId(null);
+		}
+		List<ResourceModel> list=resourceService.selectByExample(model);
+		return list;
 	}
 }
 

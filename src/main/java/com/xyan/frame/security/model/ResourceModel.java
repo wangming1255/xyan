@@ -14,22 +14,14 @@ public class ResourceModel extends BaseModel {
 	
 	private Long pId;//父级资源ID
 	private String resourceName;//资源名称
-	private String icon;//图标
+	private String resourceIcon;//图标
 	private String iconBack;//后面图标
-	private String url;//url
+	private String resourceUrl;//url
 	private String permission;//权限字符串
 	private String resourceType;//资源类型
 	private Long available;//0 不可用 1 可用 默认可用
 	private Integer level;//层级
-	List<ResourceModel> children;
-	
-	public List<ResourceModel> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<ResourceModel> children) {
-		this.children = children;
-	}
+	private String leaf;//是否叶子节点
 
 	public Integer getLevel() {
 		return level;
@@ -74,20 +66,20 @@ public class ResourceModel extends BaseModel {
 		}
 	}
 
-	public String getIcon() {
-		return icon;
+	public String getResourceIcon() {
+		return resourceIcon;
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
+	public void setResourceIcon(String resourceIcon) {
+		this.resourceIcon = resourceIcon;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getResourceUrl() {
+		return resourceUrl;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setResourceUrl(String resourceUrl) {
+		this.resourceUrl = resourceUrl;
 	}
 
 	public String getPermission() {
@@ -113,5 +105,12 @@ public class ResourceModel extends BaseModel {
 	public void setResourceType(String resourceType) {
 		this.resourceType = resourceType;
 	}
-	
+
+	public String getLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(String leaf) {
+		this.leaf = leaf;
+	}
 }

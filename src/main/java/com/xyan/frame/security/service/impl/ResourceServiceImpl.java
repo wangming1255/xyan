@@ -54,7 +54,6 @@ public class ResourceServiceImpl extends GenericServiceImpl<ResourceModel, Long>
 		for (ResourceModel resourceModel : childList) {
 			resourceModel=getResourceTree(resourceModel.getId());
 		}
-		root.setChildren(childList);
 		return root;
 	}
 }

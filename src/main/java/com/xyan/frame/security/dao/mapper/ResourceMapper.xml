@@ -8,10 +8,11 @@
 		ID as "id"
 		, PID as "pId"
 		, RESOURCE_NAME as "resourceName"
-		, ICON as "icon"
+		, RESOURCE_ICON as "resourceIcon"
 		, ICON_BACK as "iconBack"
-		, URL as "url"
+		, RESOURCE_URL as "resourceUrl"
 		,LEVEL as "level"
+		,LEAF as "leaf"
 		, AVAILABLE as "available"
 		, PERMISSION as "permission"
 	</sql>
@@ -31,57 +32,60 @@
 		<include refid="Base_Column_List" />
 		from xy_resource
 		<where>
-			<if test="id!=null">and ID=#{id}</if>
-			<if test="pId !=null">and PID=#{pId}</if>
-			<if test="resourceName !=null">and RESOURCE_NAME=#{resourceName}</if>
-			<if test="url !=null">and URL=#{url}</if>
-			<if test="level !=null">and LEVEL=#{level}</if>
-			<if test="permission !=null">and PERMISSION=#{permission}</if>
-			<if test="available!=null">and AVAILABLE=#{available}</if>
+			<if test="id!=null">AND ID=#{id}</if>
+			<if test="pId !=null">AND PID=#{pId}</if>
+			<if test="resourceName !=null">AND RESOURCE_NAME=#{resourceName}</if>
+			<if test="resourceUrl !=null">AND RESOURCE_URL=#{resourceUrl}</if>
+			<if test="leaf !=null">AND LEAF=#{leaf}</if>
+			<if test="level !=null">AND LEVEL=#{level}</if>
+			<if test="permission !=null">AND PERMISSION=#{permission}</if>
+			<if test="available!=null">AND AVAILABLE=#{available}</if>
 		</where>
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from xy_resource
-		where ID=#{id}
+		DELETE FROM xy_resource
+		WHERE ID=#{id}
 	</delete>
 
 
 	<insert id="insert" parameterType="com.xyan.frame.security.model.ResourceModel">
-		insert into xy_resource
+		INSERT INTO xy_resource
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">ID,</if>
 			<if test="pId != null">PID,</if>
 			<if test="resourceName != null">RESOURCE_NAME,</if>
-			<if test="icon != null">ICON,</if>
+			<if test="resourceIcon != null">RESOURCE_ICON,</if>
 			<if test="iconBack != null">ICON_BACK,</if>
-			<if test="url != null">URL,</if>
+			<if test="resourceUrl != null">RESOURCE_URL,</if>
 			<if test="permission != null">PERMISSION,</if>
 			<if test="available != null">AVAILABLE,</if>
 			<if test="level != null">LEVEL,</if>
+			<if test="leaf != null">LEAF,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">#{id},</if>
 			<if test="pId != null">#{pId},</if>
 			<if test="resourceName != null">#{resourceName},</if>
-			<if test="icon != null">#{icon},</if>
+			<if test="resourceIcon != null">#{resourceIcon},</if>
 			<if test="iconBack != null">#{iconBack},</if>
-			<if test="url != null">#{url},</if>
+			<if test="resourceUrl != null">#{resourceUrl},</if>
 			<if test="permission != null">#{permission},</if>
 			<if test="available != null">#{available},</if>
 			<if test="level != null">#{level},</if>
+			<if test="leaf != null">#{leaf},</if>
 		</trim>
 	</insert>
 
 	<update id="update" parameterType="com.xyan.frame.security.model.ResourceModel">
-		update xy_resource
+		UPDATE xy_resource
 		<set>
 			<if test="id != null">ID =#{id},</if>
 			<if test="pId != null">PID =#{pId},</if>
 			<if test="resourceName != null">RESOURCE_NAME =#{resourceName},</if>
-			<if test="icon != null">ICON =#{icon},</if>
+			<if test="resourceIcon != null">RESOURCE_ICON =#{resourceIcon},</if>
 			<if test="iconBack != null">ICON_BACK =#{iconBack},</if>
-			<if test="url != null">URL =#{url},</if>
+			<if test="resourceUrl != null">RESOURCE_URL =#{resourceUrl},</if>
 			<if test="permission != null">PERMISSION =#{permission},</if>
 			<if test="available != null">AVAILABLE =#{available},</if>
 			<if test="level != null">LEVEL =#{level},</if>
@@ -91,9 +95,9 @@
 
 
 	<delete id="deleteByIds" parameterType="java.lang.Long">
-		delete from xy_resource t where
+		DELETE FROM xy_resource t where
 		ID
-		in
+		IN
 		<foreach collection="list" item="item" index="index" open="("
 			close=")" separator=",">
 			#{item}

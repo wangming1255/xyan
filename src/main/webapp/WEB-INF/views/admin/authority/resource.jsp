@@ -1,10 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <title>资源管理</title>
+<link href="${path}/static/zTree/css/demo.css" rel="stylesheet">
+<link href="${path}/static/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<script src="${path}/static/zTree/js/jquery.ztree.all.min.js"></script>
 <style>
-.menu-2{text-indent: 2em;}
-.menu-3{text-indent: 4em;}
-.menu-4{text-indent: 6em;}
+.ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
 </style>
 <div class="breadcrumbs" id="breadcrumbs">
 	<script type="text/javascript">
@@ -31,88 +32,117 @@
 	<!-- #nav-search -->
 </div>
 <div class="page-content">
-	<div class="page-header">
-		<h1>角色管理</h1>
-	</div>
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="widget-body">
-				<div class="widget-main">
-					<div class="row">
-						<!-- 左侧角色树 -->
-						<div class="col-sm-12">
-							<div class="row">
-								<button onclick="delResource()" class="btn btn-app btn-xs float-r">删除</button>
-								<button onclick="editResource()" class="btn btn-app btn-xs float-r">修改</button>
-								<button onclick="addResource()" class="btn btn-app btn-xs float-r">添加</button>
-							</div>
-							<div class="widget-box">
-								<div class="widget-header widget-header-flat">
-									<h4>资源列表</h4>
-								</div>
-								<div class="widget-body">
-									<table id="dataTable" class="table table-bordered align-center font12 mar-bottom-0 dataTable">
-										<thead>
-											<tr>
-					                            <th width="15%" class="text-center">资源名称</th>
-					                            <th width="9%" class="align-center">资源类型</th>
-					                            <th width="10%" class="align-center">资源图标</th>
-					                            <th width="11%" class="align-center">是否可用</th>
-					                            <th width="9%" class="align-center">操作</th>
-					                        </tr>
-										</thead>
-										<tbody id="tbody">
-											<c:forEach items="${resourceList}" var="item">
-												<tr class="checkBOX">
-													<td class="menu-${item.level+1} text-left">
-														<i class="isCheck icon-check-empty" data-id="${item.id}" data-level="${item.level}"></i>
-														${item.resourceName }
-													</td>
-													<td>${item.resourceType }</td>
-													<td>${item.icon }</td>
-													<td>${item.available }</td>
-													<td>xxx</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+		<div class="col-xs-3">
+			<div class="widget-header">
+				<h5>资源树</h5>
+				<a href="javascript:;" onclick="add()" class="table-add-btn3"  title="新增"><img src="${path}/static/images/icon/16/plus.png"></a>
+				<a href="javascript:;" onclick="edit()" class="table-add-btn2"  title="修改"><img src="${path}/static/images/icon/16/pencil.png"></a>
+				<a href="javascript:;" onclick="authorization()" class="table-add-btn"  title="授权"><img src="${path}/static/images/icon/16/wrench-screwdriver.png"></a>
+			</div>
+			<div id="resourceTree" class="ztree">
+			</div>
+		</div>
+		<div class="col-xs-9">
+			<div class="widget-header">
+				<h5>资源信息</h5>
+			</div>
+			<div class="table-responsive">
+				<div id="resourceInfo">
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源名称：</div>
+						<div class="col-xs-10 text-left" id="resourceName"></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源图标：</div>
+						<div class="col-xs-10 text-left" id="resourceIcon"></div>
 					</div>
 				</div>
+				<form id="resourceForm" action="#" style="display: none">
+					<input type="hidden" name="pId" id="pId" value=""/>
+					<input type="hidden" name="level" id="level" value=""/>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源名称：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="resourceName" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">是否可用：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="resourceName" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源类别：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="resourceType" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源图标：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="resourceIcon" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">后面图标：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="iconBack" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源权限：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="permission" value=""/></div>
+					</div>
+					<div class="col-xs-12 mar-top-10">
+						<div class="col-xs-2 text-right">资源地址：</div>
+						<div class="col-xs-10 text-left"><input type="text" name="resourceUrl" value=""/></div>
+					</div>
+				    <div class="col-xs-12 mar-top-10 col-sm-offset-2">
+				      	<button type="button" onclick="saveResource()" class="btn btn-default">保存</button>
+				    </div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-$(function(){
-	$(".checkBOX").click(function(){
-		if($(".isCheck",this).hasClass("icon-check")){
-			$(".isCheck",this).removeClass("icon-check").addClass("icon-check-empty");
-		}else{
-			$(".isCheck",this).removeClass("icon-check-empty").addClass("icon-check");
+var setting = {
+	async: {
+		enable: true,
+		url:"${path}/admin/authority/resource/treeData",
+		autoParam:["id"],
+		dataFilter: filter
+	},
+	check: {
+		enable: true
+	},
+	callback: {
+		onClick: function(event, treeId, treeNode){
+			console.log(treeNode);
+			$("#resourceName").text(treeNode.name);
+			$("#resourceIcon").html(treeNode.resourceIcon);
 		}
-	});
-});
-function addResource(){
-	if($(".icon-check").length>1){
-		$.cxDialog({
-			info: '最多选择一个资源！',
-			 background: '#000',
-			 okText:"确定",
-			 ok:function(){
-			 	$.cxDialog.close();
-			 }
-		});
-		return ;
 	}
-	$.dialogCenter({
-		id:"resourceAdd",
-		bg:true,
-		url:"${path}/admin/authority/resource/dialog/add?pId="+$(".icon-check").data("id")+"&level="+$(".icon-check").data("level"),
-		title:"新增资源"
-	});
+};
+function filter(treeId, parentNode, responseData) {
+	for (var i=0, len=responseData.length; i<len; i++) {
+		responseData[i].name = responseData[i].resourceName;
+		responseData[i].checked  = false;
+		if(responseData[i].leaf=="0"){
+			responseData[i].isParent=true;
+		}
+	}
+	return responseData;
+}
+
+$(document).ready(function(){
+	$.fn.zTree.init($("#resourceTree"), setting);
+});
+
+function add(){
+	var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
+	var nodes = treeObj.getCheckedNodes(true);
+	if(nodes.length>1){
+		alert("最多指定一个父级资源！");
+		return ;
+	}else if(nodes.length==1){
+	
+		var resourceForm=$("#resourceForm").show();
+		var node=nodes[0];
+		$("#level",resourceForm).val(node.level+1);
+		$("#pId",resourceForm).val(node.id);
+	}
 }
 </script>
-<script type="text/javascript" src="${path}/static/js/dialog.js"></script>

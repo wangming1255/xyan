@@ -195,5 +195,3 @@ $(document).ready(function(){
 	$("#selectAll").bind("click", selectAll);
 });
 </script>
-			
-			

@@ -28,8 +28,10 @@ a{text-decoration: none;}
 	.button-box-left { margin-left: -1px; }
 	.no-border-bottom1{border-bottom: 1px solid #ccc;}
 }
-.table-add-btn{ position: absolute; right: 10px; top: 5px; cursor: pointer;}
-.table-add-btn img{ cursor: pointer;}
+.table-add-btn{ position: absolute; right: 10px; top: 8px; cursor: pointer;}
+.table-add-btn2{ position: absolute; right: 40px; top: 8px; cursor: pointer;}
+.table-add-btn3{ position: absolute; right: 70px; top: 8px; cursor: pointer;}
+.table-add-btn3 img,.table-add-btn2 img,.table-add-btn img{ cursor: pointer;}
 .tables-add-btn{ background: #ececec; position: absolute; right: 10px; top: 14px; color: #595959; height: 30px; border: 1px solid #c7c7c7; line-height: 28px;
 FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#fdfdfd,endColorStr=#f3f3f3); /*IE 6 7 8*/ 
 background: -ms-linear-gradient(top, #fdfdfd,  #f3f3f3); /* IE 10 */

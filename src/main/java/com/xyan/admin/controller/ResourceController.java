@@ -25,26 +25,25 @@ public class ResourceController {
 	@Autowired
 	private ResourceService resourceService;
 	
+	/**
+	 * 进入资源管理页面
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView role(){
-		ResourceModel model=resourceService.getResourceTree(1L);
-		return new ModelAndView("/admin/authority/resource").addObject("resourceList", resourceService.selectByExample(null));
+	public String role(){
+		return "/admin/authority/resource";
 	}
 	
-	
-	@RequestMapping(value="dialog/add",method=RequestMethod.GET)
-	public ModelAndView add(ResourceModel model){
-		if(model.getpId()!=null){
-			model.setLevel(model.getLevel()+1);
-		}
-		return new ModelAndView("/admin/authority/resourceAdd").addObject("model", model);
-	}
-	
+	/**
+	 * 保存
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="save",method=RequestMethod.POST,produces=MediaTypes.JSON_UTF_8)
 	@ResponseBody
 	public ResponseModel save(ResourceModel model){
 		ResponseModel responseModel=new ResponseModel();
-		resourceService.insertOrUpdate(model);
+		resourceService.save(model);
 		responseModel.setSuccess(true);
 		responseModel.setLogin(true);
 		return responseModel;

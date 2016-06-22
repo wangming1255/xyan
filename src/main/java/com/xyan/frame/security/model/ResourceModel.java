@@ -20,15 +20,15 @@ public class ResourceModel extends BaseModel {
 	private String permission;//权限字符串
 	private String resourceType;//资源类型
 	private Long available;//0 不可用 1 可用 默认可用
-	private Integer level;//层级
+	private Integer resourceLevel;//层级
 	private String leaf;//是否叶子节点
 
-	public Integer getLevel() {
-		return level;
+	public Integer getResourceLevel() {
+		return resourceLevel;
 	}
 
-	public void setLevel(Integer level) {
-		this.level = level;
+	public void setResourceLevel(Integer resourceLevel) {
+		this.resourceLevel = resourceLevel;
 	}
 
 	public ResourceModel() {
@@ -40,9 +40,6 @@ public class ResourceModel extends BaseModel {
 	}
 
 	public void setpId(Long pId) {
-		if(pId==null){
-			pId=0L;
-		}
 		this.pId = pId;
 	}
 

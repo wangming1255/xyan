@@ -8,10 +8,11 @@
 		ID as "id"
 		, PID as "pId"
 		, RESOURCE_NAME as "resourceName"
+		, RESOURCE_TYPE as "resourceType"
 		, RESOURCE_ICON as "resourceIcon"
 		, ICON_BACK as "iconBack"
 		, RESOURCE_URL as "resourceUrl"
-		,LEVEL as "level"
+		,RESOURCE_LEVEL as "resourceLevel"
 		,LEAF as "leaf"
 		, AVAILABLE as "available"
 		, PERMISSION as "permission"
@@ -37,7 +38,7 @@
 			<if test="resourceName !=null">AND RESOURCE_NAME=#{resourceName}</if>
 			<if test="resourceUrl !=null">AND RESOURCE_URL=#{resourceUrl}</if>
 			<if test="leaf !=null">AND LEAF=#{leaf}</if>
-			<if test="level !=null">AND LEVEL=#{level}</if>
+			<if test="resourceLevel !=null">AND RESOURCE_LEVEL=#{resourceLevel}</if>
 			<if test="permission !=null">AND PERMISSION=#{permission}</if>
 			<if test="available!=null">AND AVAILABLE=#{available}</if>
 		</where>
@@ -60,7 +61,8 @@
 			<if test="resourceUrl != null">RESOURCE_URL,</if>
 			<if test="permission != null">PERMISSION,</if>
 			<if test="available != null">AVAILABLE,</if>
-			<if test="level != null">LEVEL,</if>
+			<if test="resourceLevel != null">RESOURCE_LEVEL,</if>
+			<if test="resourceType != null">RESOURCE_Type,</if>
 			<if test="leaf != null">LEAF,</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -72,7 +74,8 @@
 			<if test="resourceUrl != null">#{resourceUrl},</if>
 			<if test="permission != null">#{permission},</if>
 			<if test="available != null">#{available},</if>
-			<if test="level != null">#{level},</if>
+			<if test="resourceLevel != null">#{resourceLevel},</if>
+			<if test="resourceType != null">#{resourceType},</if>
 			<if test="leaf != null">#{leaf},</if>
 		</trim>
 	</insert>
@@ -88,7 +91,9 @@
 			<if test="resourceUrl != null">RESOURCE_URL =#{resourceUrl},</if>
 			<if test="permission != null">PERMISSION =#{permission},</if>
 			<if test="available != null">AVAILABLE =#{available},</if>
-			<if test="level != null">LEVEL =#{level},</if>
+			<if test="leaf != null">LEAF =#{leaf},</if>
+			<if test="resourceLevel != null">RESOURCE_LEVEL =#{resourceLevel},</if>
+			<if test="resourceType != null">RESOURCE_Type =#{resourceType},</if>
 		</set>
 		where ID=#{id}
 	</update>

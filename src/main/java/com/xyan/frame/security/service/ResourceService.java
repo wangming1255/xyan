@@ -15,4 +15,10 @@ public interface ResourceService extends GenericService<ResourceModel, Long>{
 	public List<String> queryRoleResource(List<RoleModel> roles);
 	
 	public ResourceModel getResourceTree(Long rootId);
+	
+	/**
+	 * 保存资源
+	 * @param model
+	 */
+	public void save(ResourceModel model);
 }

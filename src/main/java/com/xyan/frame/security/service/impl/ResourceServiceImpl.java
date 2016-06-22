@@ -56,4 +56,19 @@ public class ResourceServiceImpl extends GenericServiceImpl<ResourceModel, Long>
 		}
 		return root;
 	}
+
+	@Override
+	public void save(ResourceModel model) {
+		if(model.getId()==null){
+			//先更新父节点
+			ResourceModel parentModel=new ResourceModel();
+			parentModel.setId(model.getpId());
+			parentModel.setLeaf("0");//不是叶子节点
+			this.update(parentModel);
+			model.setLeaf("1");
+			this.insert(model);
+		}else{
+			this.update(model);
+		}
+	}
 }

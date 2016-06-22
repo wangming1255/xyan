@@ -58,41 +58,58 @@
 						<div class="col-xs-10 text-left" id="resourceIcon"></div>
 					</div>
 				</div>
-				<form id="resourceForm" action="#" style="display: none">
-					<input type="hidden" name="pId" id="pId" value=""/>
-					<input type="hidden" name="level" id="level" value=""/>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">资源名称：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="resourceName" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">是否可用：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="resourceName" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">资源类别：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="resourceType" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">资源图标：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="resourceIcon" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">后面图标：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="iconBack" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">资源权限：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="permission" value=""/></div>
-					</div>
-					<div class="col-xs-12 mar-top-10">
-						<div class="col-xs-2 text-right">资源地址：</div>
-						<div class="col-xs-10 text-left"><input type="text" name="resourceUrl" value=""/></div>
-					</div>
-				    <div class="col-xs-12 mar-top-10 col-sm-offset-2">
-				      	<button type="button" onclick="saveResource()" class="btn btn-default">保存</button>
-				    </div>
-				</form>
+				<div id="resourceEdit" style="display: none">
+					<form id="resourceForm" action="#">
+						<input type="hidden" name="id" id="id" value=""/>
+						<input type="hidden" name="pId" id="pId" value=""/>
+						<input type="hidden" name="resourceLevel" id="resourceLevel" value=""/>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">资源名称：</div>
+							<div class="col-xs-10 text-left"><input type="text" name="resourceName" id="resourceName" value=""/></div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">是否可用：</div>
+							<div class="col-xs-10 text-left">
+								<label class="col-xs-1">
+									<input type="radio" name="available" checked="checked" id="available1" value="1"/>是
+								</label>
+								<label class="col-xs-6">
+									<input type="radio" name="available" id="available2" value="0"/>否
+								</label>
+							</div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">资源类别：</div>
+							<div class="col-xs-10 text-left">
+								<label class="col-xs-1">
+									<input type="radio" name="resourceType" checked="checked" id="resourceType1" value="RM"/>菜单
+								</label>
+								<label class="col-xs-6">
+									<input type="radio" name="resourceType" id="resourceType2" value="RB"/>按钮
+								</label>
+							</div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">资源图标：</div>
+							<div class="col-xs-10 text-left"><input type="text" name="resourceIcon" id="resourceIcon" value=""/></div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">后面图标：</div>
+							<div class="col-xs-10 text-left"><input type="text" name="iconBack" id="iconBack" value=""/></div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">资源权限：</div>
+							<div class="col-xs-10 text-left"><input type="text" name="permission" id="permission" value=""/></div>
+						</div>
+						<div class="col-xs-12 mar-top-10">
+							<div class="col-xs-2 text-right">资源地址：</div>
+							<div class="col-xs-10 text-left"><input type="text" name="resourceUrl" id="resourceUrl" value=""/></div>
+						</div>
+					    <div class="col-xs-12 mar-top-10 col-sm-offset-2">
+					      	<button type="button" onclick="saveResource()" class="btn btn-default">保存</button>
+					    </div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -106,11 +123,14 @@ var setting = {
 		dataFilter: filter
 	},
 	check: {
-		enable: true
+		enable: true,
+		chkStyle: "checkbox",
+		chkboxType: { "Y": "", "N": "" }
 	},
 	callback: {
 		onClick: function(event, treeId, treeNode){
-			console.log(treeNode);
+			$("#resourceEdit").hide();
+			$("#resourceInfo").show();
 			$("#resourceName").text(treeNode.name);
 			$("#resourceIcon").html(treeNode.resourceIcon);
 		}
@@ -135,14 +155,86 @@ function add(){
 	var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
 	var nodes = treeObj.getCheckedNodes(true);
 	if(nodes.length>1){
-		alert("最多指定一个父级资源！");
+		$.cxDialog({info: '最多指定一个父级资源！'});
 		return ;
 	}else if(nodes.length==1){
-	
-		var resourceForm=$("#resourceForm").show();
+		clearForm("#resourceForm");
+		$("#resourceInfo").hide();
+		var resourceForm=$("#resourceEdit").show();
 		var node=nodes[0];
-		$("#level",resourceForm).val(node.level+1);
+		$("#resourceLevel",resourceForm).val(parseInt(node.resourceLevel)+1);
+		console.log($("#resourceLevel",resourceForm).length);
 		$("#pId",resourceForm).val(node.id);
+	}else{
+		clearForm("#resourceForm");
+		var resourceForm=$("#resourceEdit").show();
+		$("#resourceLevel",resourceForm).val(1);
+		$("#pId",resourceForm).val(-1);
+		$("#resourceInfo").hide();
+		var resourceForm=$("#resourceEdit").show();
 	}
+}
+
+function edit(){
+	var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
+	var nodes = treeObj.getCheckedNodes(true);
+	if(nodes.length!=1){
+		$.cxDialog({info: '请选择一个需要修改的资源节点！'});
+		return ;
+	}
+	var node=nodes[0];
+	var resourceForm=$("#resourceEdit").show();
+	$("#resourceLevel",resourceForm).val(node.resourceLevel);
+	$("#pId",resourceForm).val(node.pId);
+	$("#id",resourceForm).val(node.id);
+	$("#resourceName",resourceForm).val(node.name);
+	$("#resourceIcon",resourceForm).val(node.resourceIcon);
+	$("#iconBack",resourceForm).val(node.iconBack);
+	$("#permission",resourceForm).val(node.permission);
+	$("#resourceUrl",resourceForm).val(node.resourceUrl);
+	if(!!node.available){
+		$("available1",resourceForm).prop("checked","checked");
+		$("available2",resourceForm).removeProp("checked");
+	}else{
+		$("available1",resourceForm).removeProp("checked");
+		$("available2",resourceForm).prop("checked","checked");
+	}
+	if(node.resourceType=='RM'){
+		$("resourceType1",resourceForm).prop("checked","checked");
+		$("resourceType2",resourceForm).removeProp("checked");
+	}else{
+		$("resourceType1",resourceForm).removeProp("checked");
+		$("resourceType2",resourceForm).prop("checked","checked");
+	}
+	
+	
+	$("#resourceInfo").hide();
+}
+
+function saveResource(){
+	$.ajax({
+		url:"${path}/admin/authority/resource/save",
+		data:$("#resourceForm").serialize(),
+		type:"POST",
+		success:function(data){
+			if(data.success){
+				$.cxDialog({info: '保存成功！'});
+				reloadTree($("#pId","#resourceEdit").val());
+			}else{
+				$.cxDialog({
+				  	info: '保存失败！'
+				});
+			}
+		},
+		error:function(){
+		
+		}
+	});
+}
+
+function reloadTree(id){
+	var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
+	var node = treeObj.getNodeByTId(id);
+	treeObj.reAsyncChildNodes(node, "refresh",false);
 }
 </script>

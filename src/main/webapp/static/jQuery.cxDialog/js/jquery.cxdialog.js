@@ -350,7 +350,7 @@
     closeBtn: true,
     lockScroll: false,
     baseClass: '',
-    background: '',
+    background: '#000',
     width: 0,
     height: 0
   };

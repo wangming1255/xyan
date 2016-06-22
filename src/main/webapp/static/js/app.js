@@ -30,3 +30,9 @@ function sortMyTable(tableId, Idx) {
 	tbody.appendChild(fragment); // 将排序的结果替换掉之前的值
 	tbody.sortCol = Idx;
 }
+
+function clearForm(selector){
+	$(selector).find("input[type='text']").val('');//清空一般的文本
+	$(selector).find("input[type='hidden']").val('');//清空隐藏域
+	$(selector).find("select").val('');//清空下拉选
+}

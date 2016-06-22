@@ -463,6 +463,7 @@
 <!-- ace scripts -->
 <script src="${path}/static/assets/js/ace-elements.min.js"></script>
 <script src="${path}/static/assets/js/ace.min.js"></script>
+<script src="${path}/static/js/app.js"></script>
 <script src="${path}/static/jQuery.cxDialog/js/jquery.cxdialog.js"></script>
 <!-- inline scripts related to this page -->
 

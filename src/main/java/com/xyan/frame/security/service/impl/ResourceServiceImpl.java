@@ -47,14 +47,34 @@ public class ResourceServiceImpl extends GenericServiceImpl<ResourceModel, Long>
 	
 	@Override
 	public ResourceModel getResourceTree(Long rootId) {
-		ResourceModel root=resourceDao.selectByPrimaryKey(rootId);
-		ResourceModel rootQuery=new ResourceModel();
-		rootQuery.setpId(root.getId());
-		List<ResourceModel> childList=resourceDao.selectByExample(rootQuery);
-		for (ResourceModel resourceModel : childList) {
-			resourceModel=getResourceTree(resourceModel.getId());
+		ResourceModel root=null;
+		if(rootId==-1){
+			root=new ResourceModel();
+		}else{
+			root=resourceDao.selectByPrimaryKey(rootId);
 		}
-		return root;
+		List<ResourceModel> children=this.getChildren(rootId);
+		for (ResourceModel resourceModel : children) {
+			List<ResourceModel> child=this.getChildren(resourceModel.getId());
+			for (ResourceModel resourceModel2 : child) {
+				List<ResourceModel> child2=this.getChildren(resourceModel2.getId());
+				for (ResourceModel resourceModel3 : child2) {
+					List<ResourceModel> child3=this.getChildren(resourceModel3.getId());
+					resourceModel3.setSonResource(child3);
+				}
+				resourceModel2.setSonResource(child2);
+			}
+			resourceModel.setSonResource(child);
+		}
+		root.setSonResource(children);
+		return root.setSonResource(children);
+	}
+	
+	private List<ResourceModel> getChildren(Long pId){
+		ResourceModel rootQuery=new ResourceModel();
+		rootQuery.setpId(pId);
+		List<ResourceModel> childList=resourceDao.selectByExample(rootQuery);
+		return childList;
 	}
 
 	@Override

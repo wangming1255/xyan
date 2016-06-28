@@ -22,7 +22,9 @@ public class ResourceModel extends BaseModel {
 	private Long available;//0 不可用 1 可用 默认可用
 	private Integer resourceLevel;//层级
 	private String leaf;//是否叶子节点
-
+	
+	private List<ResourceModel> sonResource;//子资源
+	
 	public Integer getResourceLevel() {
 		return resourceLevel;
 	}
@@ -110,4 +112,14 @@ public class ResourceModel extends BaseModel {
 	public void setLeaf(String leaf) {
 		this.leaf = leaf;
 	}
+
+	public List<ResourceModel> getSonResource() {
+		return sonResource;
+	}
+
+	public ResourceModel setSonResource(List<ResourceModel> sonResource) {
+		this.sonResource = sonResource;
+		return this;
+	}
+	
 }

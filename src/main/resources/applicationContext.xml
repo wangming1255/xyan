@@ -1,61 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" 
 	xsi:schemaLocation="
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx.xsd
-    http://www.springframework.org/schema/jdbc
-    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-    http://www.springframework.org/schema/cache
-    http://www.springframework.org/schema/cache/spring-cache.xsd
-    http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/util
     http://www.springframework.org/schema/util/spring-util.xsd ">
 
 	<!-- 自动扫描xyan包 ,将带有注解的类 纳入spring容器管理 -->
-	<context:component-scan base-package="com.xyan"></context:component-scan>
+	<context:component-scan base-package="com.xyan">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+	
 	<!-- 引入配置文件 -->
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath*:application.properties</value>
 				<value>classpath*:scheduled.properties</value>
 			</list>
 		</property>
-	</bean>
-
-	<!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
-	<!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
-	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
-		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
-		<property name="validationMessageSource" ref="messageSource" />
-	</bean>
-
-	<!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
-				<value>classpath:message.messages</value>
-				<value>classpath:org/hibernate/validator/ValidationMessages</value>
-			</list>
-		</property>
-		<property name="useCodeAsDefaultMessage" value="false" />
-		<property name="defaultEncoding" value="UTF-8" />
-		<!-- 每60秒检查更新国际资源文件 -->
-		<property name="cacheSeconds" value="60" />
 	</bean>
 
 	<!-- quartz-2.x的配置 start  -->

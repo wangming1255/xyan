@@ -23,10 +23,7 @@ import com.xyan.frame.util.PropertiesUtil;
  */
 public class LogInterceptor implements HandlerInterceptor {  
 	
-	private static boolean log=false;
-	static{
-		log=PropertiesUtil.getProperties("logOpen").equals("1");
-	}
+	private static boolean log=PropertiesUtil.getProperties("logOpen").equals("1");
 	
 	Logger logger=Logger.getLogger(LogInterceptor.class);
   

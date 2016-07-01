@@ -41,10 +41,7 @@ import com.xyan.frame.util.PropertiesUtil;
  * Controller中需要有专门处理异常的方法。
  */
 public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerExceptionResolver {
-	private static boolean log=false;
-	static{
-		log=PropertiesUtil.getProperties("logOpen").equals("1");
-	}
+	private static boolean log=PropertiesUtil.getProperties("logOpen").equals("1");
 	
     private String defaultErrorView;
     
@@ -95,6 +92,8 @@ public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerEx
                 // 如果没有ExceptionHandler注解那么returnValue就为空
                 if (returnValue == null) {
                     ResponseModel respn =ResponseModel.from(exception);
+                    Object user=request.getSession().getAttribute("LOGIN_USER");
+                    respn.setLogin(user!=null);
                     handleResponseError(respn, request, response);
                     return new ModelAndView();
                 }

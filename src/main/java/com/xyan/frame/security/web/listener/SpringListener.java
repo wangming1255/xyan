@@ -1,15 +1,9 @@
 package com.xyan.frame.security.web.listener;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
-
-import com.xyan.frame.security.model.ResourceModel;
-import com.xyan.frame.security.service.ResourceService;
-import com.xyan.frame.security.service.impl.ResourceServiceImpl;
 
 @Component
 @Lazy(value=false)

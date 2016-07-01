@@ -9,8 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xyan.blog.dao.ArticleDao;
 import com.xyan.blog.model.ArticleModel;
 import com.xyan.blog.service.ArticleService;
+import com.xyan.common.enums.LogType;
 import com.xyan.frame.base.dao.GenericDao;
 import com.xyan.frame.base.service.impl.GenericServiceImpl;
+import com.xyan.frame.feature.log.model.LogModel;
+import com.xyan.frame.feature.log.service.LogService;
 
 /**
  *@Description：文章（博客） -- Servcie实现类
@@ -25,7 +28,6 @@ public class ArticleServiceImpl extends GenericServiceImpl<ArticleModel, Long> i
 	@Autowired
 	private ArticleDao  articleDao;//文章（博客）
 	
-	
 	@Override
 	public GenericDao<ArticleModel, Long> getDao() {
 		return  articleDao;
@@ -33,9 +35,9 @@ public class ArticleServiceImpl extends GenericServiceImpl<ArticleModel, Long> i
 	
 	@Override
 	public int insert(ArticleModel model) {
+		
 		//默认值
 		model.setUserId(1L);
-		
 		//初始值
 		model.setCreateTime(new Date());
 		model.setUpdateTime(new Date());

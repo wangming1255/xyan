@@ -1,8 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="stylesheet" type="text/css" href="${path}/static/plugin/wangEditor-2.1.12/css/wangEditor.min.css">
 <div class="content">
 	<div class="mar15">
-		<div class="col-md-12"></div>
+		<div class="col-xs-12">
+			<textarea name="content" id="content" class="sol-xs-12 mar-left-5" style="height: 200px">${model.content}</textarea>		
+		</div>
 	</div>
 	<div class="mar15">
 		<div class="box">
@@ -39,3 +42,13 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="${path}/static/plugin/wangEditor-2.1.12/js/wangEditor.js"></script>
+<script type="text/javascript">
+var editor =null;
+$(function(){
+	//初始化编辑器
+	editor=new wangEditor('content');
+	editor.config.uploadImgUrl = '${path}/index/wangEditor/upload';
+	editor.create();
+});
+</script>

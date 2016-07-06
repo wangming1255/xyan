@@ -1,181 +1,289 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<title>欢迎登陆</title>
-<style type="text/css">
-html,body {
-	height: 100%;
-}
-.box {
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF', endColorstr='#6699FF'); /*  IE */
-	background-image:linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image:-o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image:-moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image:-webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	background-image:-ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
-	margin: 0 auto;
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-.login-box {
-	width: 100%;
-	max-width:500px;
-	height: 400px;
-	position: absolute;
-	top: 50%;
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>欢迎登陆</title>
+	<meta name="keywords" content="Bootstrap" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- basic styles -->
 
-	margin-top: -200px;
-	/*设置负值，为要定位子盒子的一半高度*/
-	
-}
-@media screen and (min-width:500px){
-	.login-box {
-		left: 50%;
-		/*设置负值，为要定位子盒子的一半宽度*/
-		margin-left: -250px;
-	}
-}	
+	<link href="${path}/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="${path}/static/assets/css/font-awesome.min.css" />
 
-.form {
-	width: 100%;
-	max-width:500px;
-	height: 305px;
-	margin: 5px auto 0px auto;
-	padding-top: 25px;
-}	
-.login-content {
-	height: 300px;
-	width: 100%;
-	max-width:500px;
-	background-color: rgba(255, 250, 2550, .6);
-	float: left;
-}		
-	
-	
-.input-group {
-	margin: 0px 0px 30px 0px !important;
-}
-.form-control,
-.input-group {
-	height: 40px;
-}
+	<!--[if IE 7]>
+	  <link rel="stylesheet" href="${path}/static/assets/css/font-awesome-ie7.min.css" />
+	<![endif]-->
 
-.form-group {
-	margin-bottom: 0px !important;
-}
-.login-title {
-	padding: 20px 10px;
-	background-color: rgba(0, 0, 0, .6);
-}
-.login-title h1 {
-	margin-top: 10px !important;
-}
-.login-title small {
-	color: #fff;
-}
+	<!-- page specific plugin styles -->
 
-.link p {
-	line-height: 20px;
-	margin-top: 30px;
-}
-.btn-sm {
-	padding: 8px 24px !important;
-	font-size: 16px !important;
-}
-</style>
-<div class="box">
-	<div class="login-box">
-		<div class="login-title text-center">
-			<h1><small>登录</small></h1>
-		</div>
-		<div class="login-content ">
-			<div class="form">
-				<form action="#" method="post">
-					<div class="form-group">
-						<div class="col-xs-12  ">
-							<div class="input-group">
-								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-user"></span>
-								</span> 
-								<input type="text" name="loginName" id="loginName" class="form-control" placeholder="用户名" />
-							</div>
-						</div>
+	<!-- fonts -->
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+	<!-- ace styles -->
+
+	<link rel="stylesheet" href="${path}/static/assets/css/ace.min.css" />
+	<link rel="stylesheet" href="${path}/static/assets/css/ace-rtl.min.css" />
+
+	<!--[if lte IE 8]>
+	  <link rel="stylesheet" href="${path}/static/assets/css/ace-ie.min.css" />
+	<![endif]-->
+	<!-- inline styles related to this page -->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="${path}/static/assets/js/html5shiv.js"></script>
+	<script src="${path}/static/assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="login-layout">
+<div class="main-container">
+	<div class="main-content">
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1">
+				<div class="login-container">
+					<div class="center">
+						<h1>
+							<i class="icon-leaf green"></i>
+							<span class="red">Ace</span>
+							<span class="white">Application</span>
+						</h1>
+						<h4 class="blue">&copy; Company Name</h4>
 					</div>
-					<div class="form-group">
-						<div class="col-xs-12  ">
-							<div class="input-group">
-								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-lock"></span>
-								</span> 
-								<input type="password" name="password" id="password" class="form-control" placeholder="密码" />
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12  ">
-							<div class="input-group">
-								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-lock"></span>
-								</span> 
-								<input type="text" name="code" style="height: 40px;width: 48%;margin-right: 8px" id="code" class="form-control" placeholder="验证码" /> 
-								<img alt="验证码" id="loginImg" style="height: 40px;width: 48%;cursor: pointer;" onclick="refresh();" class="form-control" src="${path}/user/loginCode?d=<%=new Date().getTime()%>">
-							</div>
-						</div>
-					</div>
-					<div class="form-group form-actions">
-						<div class="col-xs-4 col-xs-offset-4 ">
-							<button type="button" onclick="login()"
-								class="btn btn-sm btn-info">
-								<span class="glyphicon glyphicon-off"></span> 登录
-							</button>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-6 link">
-							<p class="text-center remove-margin">
-								<small>忘记密码？</small> <a href="javascript:void(0)"><small>找回</small></a>
-							</p>
-						</div>
-						<div class="col-xs-6 link">
-							<p class="text-center remove-margin">
-								<small>还没注册?</small> <a href="javascript:void(0)"><small>注册</small></a>
-							</p>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
+
+					<div class="space-6"></div>
+
+					<div class="position-relative">
+						<div id="login-box" class="login-box visible widget-box no-border">
+							<div class="widget-body">
+								<div class="widget-main">
+									<h4 class="header blue lighter bigger">
+										<i class="icon-coffee green"></i>
+										Please Enter Your Information
+									</h4>
+
+									<div class="space-6"></div>
+
+									<form>
+										<fieldset>
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="text" class="form-control" placeholder="Username" />
+													<i class="icon-user"></i>
+												</span>
+											</label>
+
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="password" class="form-control" placeholder="Password" />
+													<i class="icon-lock"></i>
+												</span>
+											</label>
+
+											<div class="space"></div>
+
+											<div class="clearfix">
+												<label class="inline">
+													<input type="checkbox" class="ace" />
+													<span class="lbl"> Remember Me</span>
+												</label>
+
+												<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+													<i class="icon-key"></i>
+													Login
+												</button>
+											</div>
+
+											<div class="space-4"></div>
+										</fieldset>
+									</form>
+
+									<div class="social-or-login center">
+										<span class="bigger-110">Or Login Using</span>
+									</div>
+
+									<div class="social-login center">
+										<a class="btn btn-primary">
+											<i class="icon-facebook"></i>
+										</a>
+
+										<a class="btn btn-info">
+											<i class="icon-twitter"></i>
+										</a>
+
+										<a class="btn btn-danger">
+											<i class="icon-google-plus"></i>
+										</a>
+									</div>
+								</div><!-- /widget-main -->
+
+								<div class="toolbar clearfix">
+									<div>
+										<a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+											<i class="icon-arrow-left"></i>
+											I forgot my password
+										</a>
+									</div>
+
+									<div>
+										<a href="#" onclick="show_box('signup-box'); return false;" class="user-signup-link">
+											I want to register
+											<i class="icon-arrow-right"></i>
+										</a>
+									</div>
+								</div>
+							</div><!-- /widget-body -->
+						</div><!-- /login-box -->
+
+						<div id="forgot-box" class="forgot-box widget-box no-border">
+							<div class="widget-body">
+								<div class="widget-main">
+									<h4 class="header red lighter bigger">
+										<i class="icon-key"></i>
+										Retrieve Password
+									</h4>
+
+									<div class="space-6"></div>
+									<p>
+										Enter your email and to receive instructions
+									</p>
+
+									<form>
+										<fieldset>
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="email" class="form-control" placeholder="Email" />
+													<i class="icon-envelope"></i>
+												</span>
+											</label>
+
+											<div class="clearfix">
+												<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+													<i class="icon-lightbulb"></i>
+													Send Me!
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div><!-- /widget-main -->
+
+								<div class="toolbar center">
+									<a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+										Back to login
+										<i class="icon-arrow-right"></i>
+									</a>
+								</div>
+							</div><!-- /widget-body -->
+						</div><!-- /forgot-box -->
+
+						<div id="signup-box" class="signup-box widget-box no-border">
+							<div class="widget-body">
+								<div class="widget-main">
+									<h4 class="header green lighter bigger">
+										<i class="icon-group blue"></i>
+										New User Registration
+									</h4>
+
+									<div class="space-6"></div>
+									<p> Enter your details to begin: </p>
+
+									<form>
+										<fieldset>
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="email" class="form-control" placeholder="Email" />
+													<i class="icon-envelope"></i>
+												</span>
+											</label>
+
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="text" class="form-control" placeholder="Username" />
+													<i class="icon-user"></i>
+												</span>
+											</label>
+
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="password" class="form-control" placeholder="Password" />
+													<i class="icon-lock"></i>
+												</span>
+											</label>
+
+											<label class="block clearfix">
+												<span class="block input-icon input-icon-right">
+													<input type="password" class="form-control" placeholder="Repeat password" />
+													<i class="icon-retweet"></i>
+												</span>
+											</label>
+
+											<label class="block">
+												<input type="checkbox" class="ace" />
+												<span class="lbl">
+													I accept the
+													<a href="#">User Agreement</a>
+												</span>
+											</label>
+
+											<div class="space-24"></div>
+
+											<div class="clearfix">
+												<button type="reset" class="width-30 pull-left btn btn-sm">
+													<i class="icon-refresh"></i>
+													Reset
+												</button>
+
+												<button type="button" class="width-65 pull-right btn btn-sm btn-success">
+													Register
+													<i class="icon-arrow-right icon-on-right"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+
+								<div class="toolbar center">
+									<a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+										<i class="icon-arrow-left"></i>
+										Back to login
+									</a>
+								</div>
+							</div><!-- /widget-body -->
+						</div><!-- /signup-box -->
+					</div><!-- /position-relative -->
+				</div>
+			</div><!-- /.col -->
+		</div><!-- /.row -->
 	</div>
-</div>
-<script type="text/javascript" src="${path}/static/js/jquery/jquery.md5.js"></script>
+</div><!-- /.main-container -->
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+<!--[if !IE]> -->
 <script type="text/javascript">
-	function login() {
-		$.ajax({
-			type : "POST",
-			url : "${path}/user/login",
-			data : {
-				"loginName" : $("#loginName").val(),
-				"password" : $.md5($("#password").val()),
-				"code" : $("#code").val()
-			},
-			complete:function(){
-				$("#errorMess").animate({opacity:'0.2',},2000,function(){
-					$("#errorMess").css("opacity",1).html("");
-				});
-			},
-			success : function(msg) {
-				//$("#error").show(400);
-				$("#errorMess").html(msg.message);
-				var backURL="${backURL}";
-				console.log(backURL);
-				/* if(!!backURL&&msg.success&&backURL!="/xyan/user/backURL"){
-					setTimeout(function(){
-						location.href="backURL";
-					},1000)
-				} */
-			}
-		});
-	}
-	function refresh(){
-		$("#loginImg").prop("src","${path}/user/loginCode?d="+Math.random());
-	}
+	window.jQuery || document.write("<script src='${path}/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 </script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='${path}/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+<script type="text/javascript">
+	if("ontouchend" in document) document.write("<script src='${path}/static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+function show_box(id) {
+	 jQuery('.widget-box.visible').removeClass('visible');
+	 jQuery('#'+id).addClass('visible');
+}
+</script>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

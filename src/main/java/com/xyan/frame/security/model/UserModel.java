@@ -1,5 +1,7 @@
 package com.xyan.frame.security.model;
 
+import java.util.Date;
+
 import com.xyan.frame.base.model.BaseModel;
 
 /**
@@ -15,6 +17,9 @@ public class UserModel extends BaseModel {
 	private String salt;//盐值
 	private String email;//email邮箱
 	private String mobile;//手机号
+	private int lockTime;//锁的次数，三次即锁住半小时
+	private Date lockDate;//锁住日期
+	
 	
 	public UserModel() {
 		
@@ -54,5 +59,17 @@ public class UserModel extends BaseModel {
 	}
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
+	}
+	public int getLockTime() {
+		return lockTime;
+	}
+	public void setLockTime(int lockTime) {
+		this.lockTime = lockTime;
+	}
+	public Date getLockDate() {
+		return lockDate;
+	}
+	public void setLockDate(Date lockDate) {
+		this.lockDate = lockDate;
 	}
 }

@@ -11,7 +11,16 @@ import javax.servlet.http.HttpSession;
  */
 public class SessionUtil {
 	
-
+	private static ThreadLocal<HttpServletRequest> local=new ThreadLocal<>();
+	
+	public static void setRequest(HttpServletRequest request){
+		local.set(request);
+	}
+	
+	public static void removeRequest(){
+		local.remove();;
+	}
+	
 	 /**
 	  * @Author:wangming
 	  * @Description:获取当前Session
@@ -22,6 +31,19 @@ public class SessionUtil {
 	public static HttpSession getSession(HttpServletRequest request) {
 		return  request.getSession();
 	}
+	
+	
+	/**
+	 * @Author:wangming
+	 * @Description 获取session
+	 * @return
+	 * @since 2016年7月5日下午5:39:13
+	 */
+	public static HttpSession getSession() {
+		return  local.get().getSession();
+	}
+	
+	
 	
 	
 }

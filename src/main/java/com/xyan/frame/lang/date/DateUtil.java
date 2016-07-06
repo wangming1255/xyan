@@ -12,9 +12,9 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * 日期工具类
- * 
- * 作者: zhoubang 日期：2015年3月26日 下午1:33:17
+ * 日期工具类<br/>
+ * 作者: wangming<br/> 
+ * 日期：2016年6月26日 下午1:33:17
  */
 public class DateUtil {
 
@@ -43,6 +43,31 @@ public class DateUtil {
         gregorianCalendar = new GregorianCalendar();
     }
 
+    /**
+     * @Author:wangming
+     * @Description 获取与当前时间间隔的毫秒数
+     * @param date 
+     * @return
+     * @since 2016年7月5日下午5:54:05
+     */
+    public static long getBetween(Date date){
+    	return Math.abs(date.getTime()-System.currentTimeMillis());
+    }
+    
+    /**
+     * @Author:wangming
+     * @Description 获取时间间隔
+     * @param start 开始时间
+     * @param end 结束时间
+     * @return
+     * @since 2016年7月5日下午5:55:04
+     */
+    public static long getBetween(Date start,Date end){
+    	return Math.abs(start.getTime()-end.getTime());
+    }
+    
+    
+    
     /**
      * 日期格式化yyyy-MM-dd
      * 

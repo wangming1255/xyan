@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.xyan.common.enums.LogType;
 import com.xyan.frame.feature.log.model.LogModel;
 import com.xyan.frame.feature.log.service.LogService;
+import com.xyan.frame.security.web.util.SessionUtil;
 import com.xyan.frame.util.ApplicationUtils;
 import com.xyan.frame.util.DateUtil;
 import com.xyan.frame.util.PropertiesUtil;
@@ -39,6 +40,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override  
     public boolean preHandle(HttpServletRequest request,  
             HttpServletResponse response, Object handler) throws Exception {
+    	SessionUtil.setRequest(request);
     	logger.info(DateUtil.getNowDate(DateUtil.DATE_FORMAT_LONG_ZH)+"\t当前访问的URI:  "+request.getRequestURI());
     	if(log){
     		LogModel logModel=new LogModel();
@@ -71,6 +73,7 @@ public class LogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request,  
             HttpServletResponse response, Object handler, Exception ex)  
     throws Exception {  
+    	SessionUtil.removeRequest();
     }  
       
 }  
